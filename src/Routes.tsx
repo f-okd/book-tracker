@@ -1,5 +1,5 @@
-import Error from './common/Error';
-import Layout from './common/Layout';
+import Error from './common/Error/Error';
+import Layout from './common/Layout/Layout';
 import Home from './pages/Home';
 
 // need to keep routes config separate so we can instantiate different types of routers for tests/production
