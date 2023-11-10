@@ -6,48 +6,44 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-primary">
-      <nav className="flex flex-wrap items-center justify-between border-b border-stone-200 bg-yellow-400 px-4 py-3 sm:px-6">
-        <Link to="/" className="text-lg uppercase font-semibold">
-          Logo/Brand
-        </Link>
+    <section className="bg-ternary px-1 pt-1">
+      <header className="bg-secondary">
+        <nav className="flex flex-wrap items-center justify-between border-b border-stone-200 px-4 py-3 sm:px-6">
+          <Link to="/" className="text-lg uppercase font-semibold">
+            <img src="book.svg" width={35}></img>
+          </Link>
 
-        <button
-          className="sm:hidden text-3xl"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          &#9776;
-        </button>
+          <button
+            className="sm:hidden text-3xl"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            &#9776;
+          </button>
 
-        <div
-          className={`w-full sm:inline-flex ${
-            isMenuOpen ? 'block' : 'hidden'
-          } sm:hidden`}
-        >
-          <Button to="/" type="primary">
-            Home
-          </Button>
-          <Button to="/browse" type="primary">
-            Browse books
-          </Button>
-          <Button to="/dashboard" type="primary">
-            Dashboard
-          </Button>
-        </div>
+          <div
+            className={`w-full sm:inline-flex ${
+              isMenuOpen ? 'block' : 'hidden'
+            } sm:hidden`}
+          >
+            <Button to="/browse" type="ternary">
+              Browse books
+            </Button>
+            <Button to="/dashboard" type="ternary">
+              Dashboard
+            </Button>
+          </div>
 
-        <div className="hidden sm:ml-[4rem] sm:flex flex-grow items-center justify-right">
-          <Button to="/" type="primary">
-            Home
-          </Button>
-          <Button to="/browse" type="primary">
-            Browse books
-          </Button>
-          <Button to="/dashboard" type="primary">
-            Dashboard
-          </Button>
-        </div>
-      </nav>
-    </header>
+          <div className="hidden sm:ml-[4rem] sm:flex flex-grow items-center justify-right">
+            <Button to="/browse" type="ternary">
+              My list
+            </Button>
+            <Button to="/dashboard" type="ternary">
+              Dashboard
+            </Button>
+          </div>
+        </nav>
+      </header>
+    </section>
   );
 };
 

@@ -6,13 +6,14 @@ const Layout = () => {
   const navigation = useNavigation();
   const isLoading = navigation.state === 'loading';
 
-
   return !isLoading ? (
-    <>
-      <Header/>
+    <div className="flex flex-col flex-1">
+      <Header />
       <Outlet />
-    </>
-  ) : <Loader />;
+    </div>
+  ) : (
+    <Loader />
+  );
 };
 
 export default Layout;
