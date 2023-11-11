@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
 import { parseBook } from '../../../../utils/helpers';
 import { IBook } from '../../../../utils/types';
+import { getBooks } from '../../../../services/apiGoogleBooks';
 
 interface ISearch {
   value: string;
@@ -17,10 +18,8 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
     const fetchBook = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes?q=${value}&maxResults=8`,
-          { signal: controller.signal },
-        );
+
+        const response = await getBooks(value, controller);
 
         // Pagination:
         //   const loadMore = async () => {
@@ -56,12 +55,13 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
     // wait for user to type at least 3 characters
     if (value.length > 3) fetchBook();
 
-    /* cleanup function
-          - each time the user types, the query changes and our useEffect hook is called
-          - sending a new request is sent to api we end up sending multiple requests in a short span
-          - this is wasteful and can cause race conditions
-          - so in the cleanup function, we abort the current fetch request before sending a new one every keystroke
-      */
+    /* 
+    cleanup function
+      - each time the user types, the query changes and our useEffect hook is called
+      - sending a new request is sent to api we end up sending multiple requests in a short span
+      - this is wasteful and can cause race conditions
+      - so in the cleanup function, we abort the current fetch request before sending a new one every keystroke
+    */
     return () => controller.abort();
   }, [value, handleSetSearchResults]);
 

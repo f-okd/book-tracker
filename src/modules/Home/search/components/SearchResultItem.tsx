@@ -8,6 +8,7 @@ interface ISearchResultItem {
 const SearchResultItem = ({ book }: ISearchResultItem) => {
   return (
     <div
+      key={book.id}
       className="flex flex-row items-center border solid p-1 mb-1 mx-4 rounded-xl bg-secondary"
       id="bookPreview"
     >
@@ -24,7 +25,7 @@ const SearchResultItem = ({ book }: ISearchResultItem) => {
             ? book.authors.slice(0, 2).join(', ')
             : 'no authors listed'}
         </p>
-        <Button type="small" to="/">
+        <Button type="small" to={`/book/${book.id}`}>
           View
         </Button>
       </div>

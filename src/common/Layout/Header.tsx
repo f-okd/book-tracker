@@ -25,7 +25,7 @@ const Header = () => {
               isMenuOpen ? 'block' : 'hidden'
             } sm:hidden`}
           >
-            <Button to="/browse" type="ternary">
+            <Button to="/mybooks" type="ternary">
               Browse books
             </Button>
             <Button to="/dashboard" type="ternary">
