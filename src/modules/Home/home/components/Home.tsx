@@ -1,8 +1,10 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
-import SearchBar from '../../../../common/SearchBar/SearchBar';
-import Search from '../../search/components/Search';
+
 import { IBook } from '../../../../utils/types';
-import SearchResults from '../../search/components/SearchResults';
+
+import Search from '../../search/components/Search';
+import SearchBar from '../../../../common/SearchBar/SearchBar';
+import SearchResultList from '../../search/components/SearchResultList';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -22,14 +24,14 @@ const Home = () => {
   return (
     <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-center items-center pt-1/3 min-h-screen">
       <h1 className="text-xl font-bold mb-4">Enter book name...</h1>
-      memo
+
       <Search
         value={searchValue}
         handleSetSearchResults={handleSetSearchResults}
       >
         <SearchBar value={searchValue} onChange={handleChange} />
       </Search>
-      {searchResults && <SearchResults searchResults={searchResults} />}
+      {searchResults && <SearchResultList searchResults={searchResults} />}
     </main>
   );
 };

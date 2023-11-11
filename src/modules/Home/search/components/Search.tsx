@@ -45,6 +45,7 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
         const booksFromApi: IBook[] = response.data.items.map((book: any) =>
           parseBook(book),
         );
+        console.log(booksFromApi);
         handleSetSearchResults(booksFromApi);
       } catch (e) {
         console.log(`Error fetching books: ${(e as Error).message}`);

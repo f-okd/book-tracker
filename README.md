@@ -14,5 +14,9 @@
 - Axios: Fetching data
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 
+Other resources:
+
+- [Book Logo](https://www.svgrepo.com/svg/513520/book-closed)
+
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)

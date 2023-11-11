@@ -4,12 +4,14 @@ import { IBook } from './types';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const parseBook = (apiResponse: any): IBook => {
   const { id, volumeInfo } = apiResponse;
-  const { title, publishedDate, description, imageLinks } = volumeInfo;
-  const { smallThumbnail, thumbnail } = imageLinks;
+  const { title, authors, publishedDate, description, imageLinks } =
+    volumeInfo ?? {};
+  const { smallThumbnail, thumbnail } = imageLinks ?? {};
 
   const extractedData = {
     id,
     title,
+    authors,
     publishedDate,
     description,
     smallThumbnail,
