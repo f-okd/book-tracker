@@ -13,7 +13,6 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log(value);
     const controller = new AbortController();
     const fetchBook = async () => {
       try {
@@ -45,7 +44,7 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
         const booksFromApi: IBook[] = response.data.items.map((book: any) =>
           parseBook(book),
         );
-        console.log(booksFromApi);
+        console.log(response.data.items);
         handleSetSearchResults(booksFromApi);
       } catch (e) {
         console.log(`Error fetching books: ${(e as Error).message}`);

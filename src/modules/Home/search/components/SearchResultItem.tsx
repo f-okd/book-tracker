@@ -1,3 +1,4 @@
+import Button from '../../../../common/Button/Button';
 import { IBook } from '../../../../utils/types';
 
 interface ISearchResultItem {
@@ -11,19 +12,21 @@ const SearchResultItem = ({ book }: ISearchResultItem) => {
       id="bookPreview"
     >
       <img
-        className="mr-2" // Add margin to the right of the image
+        className="mr-2 w-[50px] md:w-[100px]" // Add margin to the right of the image
         id="bookPreviewImage"
-        width={50} // Adjusted width for better visibility
         src={book.smallThumbnail ?? 'bookNotFound.png' ?? undefined}
       />
 
       <div className="flex flex-col" id="bookPreviewDescription">
-        <p className="font-semibold">{book.title}</p>
-        <p className="text-xs italic">
+        <p className="font-semibold md:text-lg">{book.title}</p>
+        <p className="text-xs italic md:text-sm">
           {book.authors && book.authors.length > 0
             ? book.authors.slice(0, 2).join(', ')
             : 'no authors listed'}
         </p>
+        <Button type="small" to="/">
+          View
+        </Button>
       </div>
     </div>
   );

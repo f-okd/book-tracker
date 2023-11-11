@@ -6,9 +6,8 @@ interface ISearchResults {
 }
 
 const SearchResultList = ({ searchResults }: ISearchResults) => {
-  // return searchResults.map((book: IBook) => <p key={book.id}>{book.title}</p>);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-[90%] sm:w-[60%]">
       {searchResults.map((searchResult) => (
         <SearchResultItem book={searchResult} />
       ))}

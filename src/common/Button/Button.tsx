@@ -5,30 +5,31 @@ interface IButton {
   children: string | ReactNode;
   disabled?: boolean;
   to?: string;
-  type: 'primary' | 'ternary'; // Allow "primary" or "ternary"
+  type: 'small' | 'ternary'; // Allow "primary" or "ternary"
 }
 
 function Button({ children, disabled, to, type }: IButton) {
   const base =
-    'flex mb-2 sm:mb-0 sm:mr-4 px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm rounded font-semibold uppercase tracking-widest disabled:cursor-not-allowed';
+    ' text-primary text-center bg-ternary rounded font-semibold uppercase tracking-widest disabled:cursor-not-allowed';
 
   const styles = {
-    primary: base + ' text-ternary bg-secondary',
-    ternary: base + ' text-primary bg-ternary',
+    ternary:
+      base +
+      ' flex m-1 px-3 py-2 text-xs sm:mb-0 sm:mr-4 sm:px-4 sm:py-2 sm:text-sm',
+    small:
+      base +
+      ' flex-1 w-20 m-1 sm:mb-0 py-2 text-xs rounded-full sm:px-4 sm:py-2 sm:text-sm  ',
   };
 
   if (to)
     return (
-      <Link to={to} className={styles[type as 'primary' | 'ternary']}>
+      <Link to={to} className={styles[type as 'small' | 'ternary']}>
         {children}
       </Link>
     );
 
   return (
-    <button
-      disabled={disabled}
-      className={styles[type as 'primary' | 'ternary']}
-    >
+    <button disabled={disabled} className={styles[type as 'small' | 'ternary']}>
       {children}
     </button>
   );
