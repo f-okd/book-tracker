@@ -29,14 +29,12 @@ Helpful resources:
 - We only have 1 supabase table for reviews because Supabase manages users + authentication for us
 
 Reviews Table:
-+-----------+--------+---------+----------+-------------------------+
 | review_id | book_id | user_id | rating | comment |
-+-----------+--------+---------+----------+-------------------------+
+| --------- | ------- | ------- | ------ | ------------------------ |
 | 1 | 123 | 456 | 4.5 | Great book! Highly rec. |
 | 2 | 124 | 457 | 3.8 | Good read, but not best |
 | 3 | 123 | 458 | 5.0 | Excellent! Must-read. |
 | 4 | 125 | 459 | 2.5 | Disappointed. |
-+-----------+--------+---------+----------+-------------------------+
 
 - review_id is a unique identifier for each review.
 - book_id is a foreign key referring to the book being reviewed.
