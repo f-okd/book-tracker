@@ -13,7 +13,7 @@ const SearchResultItem = ({ book }: ISearchResultItem) => {
       id="bookPreview"
     >
       <img
-        className="mr-2 w-[50px] md:w-[100px]" // Add margin to the right of the image
+        className="mr-2 w-[50px] md:w-[100px]"
         id="bookPreviewImage"
         src={book.smallThumbnail ?? 'bookNotFound.png' ?? undefined}
       />

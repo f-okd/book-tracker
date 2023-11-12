@@ -104,3 +104,20 @@ export const getBooks = async (
 - Need to install supabase package: npm i --save @Supabase/supabase-js
 - Can also use Supabase CLI to [generate types](https://supabase.com/docs/reference/javascript/typescript-support) based on database schema: gen types typescript --project-id abcdefghijklmnopqrst > database.types.ts
 - Projects have a RESTful endpoint that you can use with your project's API key to query and manage your database. I've put the keys in my .env file.
+
+- [Connect to your project](https://supabase.com/dashboard/project/pyqlglhglzmuijyvufkr/auth/providers):
+
+```
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = import.meta.env.PROJECT_URL;
+const supabaseKey = import.meta.env.ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+export default supabase;
+
+```
+
+### React query
+
+- We use react-query for remote state management, meaning it will take over data fetching and storage for this application

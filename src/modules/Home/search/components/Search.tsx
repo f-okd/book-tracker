@@ -1,7 +1,8 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { parseBook } from '../../../../utils/helpers';
 import { IBook } from '../../../../utils/types';
-import { getBooks } from '../../../../services/apiGoogleBooks';
+import { searchForBooksFromGoogle } from '../../../../services/googleBooks/apiGoogleBooks';
+import Loader from '../../../../common/Loader/Loader';
 
 interface ISearch {
   value: string;
@@ -14,11 +15,11 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
 
   useEffect(() => {
     const controller = new AbortController();
-    const fetchBook = async () => {
+    const fetchBooks = async () => {
       try {
         setIsLoading(true);
 
-        const response = await getBooks(value, controller);
+        const response = await searchForBooksFromGoogle(value, controller);
 
         if (response.status != 200) throw new Error('Book not found');
 
@@ -36,7 +37,7 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
       }
     };
 
-    if (value.length > 3) fetchBook();
+    if (value.length > 3) fetchBooks();
 
     /* 
     cleanup function
@@ -48,7 +49,7 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
     return () => controller.abort();
   }, [value, handleSetSearchResults]);
 
-  return <>{children}</>;
+  return <>{isLoading ? <Loader /> : children}</>;
 };
 
 export default Search;

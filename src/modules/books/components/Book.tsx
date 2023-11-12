@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { getBook } from '../../../services/apiGoogleBooks';
+import { getBookFromGoogle } from '../../../services/googleBooks/apiGoogleBooks';
 import { IBook } from '../../../utils/types';
 import BookDetails from './BookDetails';
 
@@ -12,9 +12,10 @@ const Book = () => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   console.log(params.bookId);
-  const book: IBook = await getBook(params.bookId ?? '');
+  const book: IBook = await getBookFromGoogle(params.bookId ?? '');
   return book;
 };
 

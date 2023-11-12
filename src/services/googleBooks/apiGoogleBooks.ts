@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { parseBook } from '../utils/helpers';
+import { parseBook } from '../../utils/helpers';
 
 // referene: https://developers.google.com/books/docs/v1/reference/volumes/get
-export const getBook = async (bookId: string) => {
+export const getBookFromGoogle = async (bookId: string) => {
   const response = await axios.get(
     `https://www.googleapis.com/books/v1/volumes/${bookId}`,
   );
@@ -10,7 +10,7 @@ export const getBook = async (bookId: string) => {
   return data;
 };
 
-export const getBooks = async (
+export const searchForBooksFromGoogle = async (
   searchValue: string,
   controller: AbortController,
 ) => {
