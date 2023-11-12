@@ -14,8 +14,6 @@
 - Axios: Fetching data
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 - [Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/reactjs): Backend-as-a-service (BaaS)
-  Other resources:
-
 - [Book Logo](https://www.svgrepo.com/svg/513520/book-closed)
 
 Helpful resources:
@@ -23,24 +21,25 @@ Helpful resources:
 
 ### Backend
 
-- I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
+- I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly. (seriously it's insane)
 - The google books API is so thoroughly documented with more than enough features to complete this project, which meant that the complexity of the database was very minimal.
-  - i.e. the only information I needed store about a book was it's ID.
+  - i.e. the only information I needed store about a book was it's ID. Then we can use the google books api to fetch any relevant information about it
 - We only have 1 supabase table for reviews because Supabase manages users + authentication for us
 
 Reviews Table:
-| review_id | book_id | user_id | rating | comment |
-| --------- | ------- | ------- | ------ | ------------------------ |
-| 1 | 123 | 456 | 4.5 | Great book! Highly rec. |
-| 2 | 124 | 457 | 3.8 | Good read, but not best |
-| 3 | 123 | 458 | 5.0 | Excellent! Must-read. |
-| 4 | 125 | 459 | 2.5 | Disappointed. |
 
-- review_id is a unique identifier for each review.
-- book_id is a foreign key referring to the book being reviewed.
-- user_id is a foreign key referring to the user who wrote the review.
-- rating is the user's rating for the book (e.g., on a scale from 1 to 5).
-- comment is the written review or comment provided by the user.
+| review_id | book_id | rating | comment                 |
+| --------- | ------- | ------ | ----------------------- |
+| 1         | 123     | 4      | Great book! Highly rec. |
+| 2         | 124     | 3      | Good read, but not best |
+| 3         | 123     | 5      | Excellent! Must-read.   |
+| 4         | 125     | 2      | Disappointed.           |
+
+- review_id:int8 is a unique identifier for each review.
+- book_id:text would be a foreign key referring to the book being reviewed if we had a books table
+- user_id:uuid is a foreign key referring to the user who wrote the review.
+- rating:int2 is the user's rating for the book (e.g., on a scale from 1 to 5).
+- comment:text is the written review or comment provided by the user.
 
 ### Using Google Books API:
 
@@ -72,7 +71,7 @@ export const parseBook = (apiResponse: any): IBook => {
 
 ```
 
-[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a volume resource
+[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a volume resource, which is so big/complex I chose not to add it as a type interface.
 
 ```
 // Fetching a single book using an Id
@@ -80,23 +79,28 @@ export const getBook = async (bookId: string) => {
   const response = await axios.get(
     `https://www.googleapis.com/books/v1/volumes/${bookId}`,
   );
-  const data = parseBook(response.data);
-  return data;
+
+  return response.data;
 };
 ```
 
-[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): GET https://www.googleapis.com/books/v1/volumes?q=quilting returns an array of volume resources
+[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): HTTP GET https://www.googleapis.com/books/v1/volumes?q=quilting returns an array of volume resources
 
 ```
 export const getBooks = async (
   searchValue: string,
-  controller: AbortController,
 ) => {
   const response = await axios.get(
     `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=8`,
-    { signal: controller.signal },
   );
 
-  return response;
+  return response.data.items;
 };
 ```
+
+### Working with Supbase
+
+- User management tutorial for react: [Official documentation](https://supabase.com/docs/guides/getting-started/tutorials/with-react)
+- Need to install supabase package: npm i --save @Supabase/supabase-js
+- Can also use Supabase CLI to [generate types](https://supabase.com/docs/reference/javascript/typescript-support) based on database schema: gen types typescript --project-id abcdefghijklmnopqrst > database.types.ts
+- Projects have a RESTful endpoint that you can use with your project's API key to query and manage your database. I've put the keys in my .env file.

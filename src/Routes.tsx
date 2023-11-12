@@ -4,6 +4,7 @@ import Home from './modules/home/home/components/Home';
 import Dashboard from './modules/dashboard/Dashboard';
 import Book from './modules/books/components/Book';
 import { loader as bookLoader } from './modules/books/components/Book';
+import Login from './modules/auth/components/Login';
 
 // need to keep routes config separate so we can instantiate different types of routers for tests/production
 // see App.test.tsx for use with MemoryRouter
@@ -15,6 +16,10 @@ export const routesConfig = [
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/dashboard',
