@@ -31,10 +31,9 @@ Helpful resources:
 
 - See implementation: src/services/apiGoogleBooks.ts
 - We the Google Books Rest API
-- You don't actually need a Google API Key to get started with this
-- Axios is used for all fetching
+- You don't actually need a Google API Key/any form of authentication to get started with this because we're only accessing public data about volumes
 
-[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId
+[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a [volume resource](https://developers.google.com/books/docs/v1/reference/volumes)
 
 ```
 // Fetching a single book using an Id
@@ -47,7 +46,7 @@ export const getBook = async (bookId: string) => {
 };
 ```
 
-[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): GET https://www.googleapis.com/books/v1/volumes?q=quilting
+[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): GET https://www.googleapis.com/books/v1/volumes?q=quilting returns an array of [volume resource](https://developers.google.com/books/docs/v1/reference/volumes)s
 
 ```
 export const getBooks = async (
