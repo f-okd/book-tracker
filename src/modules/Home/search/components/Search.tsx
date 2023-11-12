@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
 import { parseBook } from '../../../../utils/helpers';
 import { IBook } from '../../../../utils/types';
@@ -21,24 +20,9 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
 
         const response = await getBooks(value, controller);
 
-        // Pagination:
-        //   const loadMore = async () => {
-        //     const resources = await axios.get(
-        //       `https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=8&startIndex=${details.length}`,
-        //     );
-        //     setDetails((oldDetails) => [
-        //       ...oldDetails,
-        //       ...resources.data.items,
-        //     ]);
-        //   };
-
-        // If response is not ok
         if (response.status != 200) throw new Error('Book not found');
 
-        /* 
-          - i know damn well what type the book is but im not typing all that out #sorrynotsorry
-          - response type: https://developers.google.com/books/docs/v1/reference/volumes 
-        */
+        // - response type: https://developers.google.com/books/docs/v1/reference/volumes
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const booksFromApi: IBook[] = response.data.items.map((book: any) =>
           parseBook(book),
@@ -52,7 +36,6 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
       }
     };
 
-    // wait for user to type at least 3 characters
     if (value.length > 3) fetchBook();
 
     /* 
@@ -69,3 +52,14 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
 };
 
 export default Search;
+
+// Not sure if i want to implement this:
+//   const loadMore = async () => {
+//     const resources = await axios.get(
+//       `https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=8&startIndex=${details.length}`,
+//     );
+//     setDetails((oldDetails) => [
+//       ...oldDetails,
+//       ...resources.data.items,
+//     ]);
+//   };

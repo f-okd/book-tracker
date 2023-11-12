@@ -1,4 +1,4 @@
-import axios, { GenericAbortSignal } from 'axios';
+import axios from 'axios';
 import { parseBook } from '../utils/helpers';
 
 // referene: https://developers.google.com/books/docs/v1/reference/volumes/get

@@ -5,7 +5,7 @@ interface IButton {
   children: string | ReactNode;
   disabled?: boolean;
   to?: string;
-  type: 'small' | 'ternary'; // Allow "primary" or "ternary"
+  type: 'small' | 'ternary';
 }
 
 function Button({ children, disabled, to, type }: IButton) {
