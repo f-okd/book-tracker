@@ -1,7 +1,7 @@
 import supabase from './supabase';
 
 export const getBooksFromDb = async () => {
-  const { data: reviews, error } = await supabase.from('Reviews').select('*');
+  const { data: reviews, error } = await supabase.from('UserBooks').select('*');
 
   if (error) {
     console.error(error);

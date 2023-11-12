@@ -33,7 +33,7 @@ export const routesConfig = [
         errorElement: <Error />,
       },
       {
-        path: '/myboook',
+        path: '/mybooks',
         element: <BookListPage />,
       },
     ],

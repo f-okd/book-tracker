@@ -1,5 +1,4 @@
 import { ReactNode, useEffect } from 'react';
-import { parseBook } from '../../../../utils/helpers';
 import { IBook } from '../../../../utils/types';
 import { searchForBooksFromGoogle } from '../../../../services/googleBooks/apiGoogleBooks';
 
@@ -22,17 +21,11 @@ const Search = ({
       try {
         toggleIsLoading(true);
 
-        const response = await searchForBooksFromGoogle(value, controller);
+        const booksFromApi = await searchForBooksFromGoogle(value, controller);
 
-        if (response.status != 200) throw new Error('Book not found');
-
-        // - response type: https://developers.google.com/books/docs/v1/reference/volumes
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const booksFromApi: IBook[] = response.data.items.map((book: any) =>
-          parseBook(book),
-        );
-        console.log(response.data.items);
-        handleSetSearchResults(booksFromApi);
+        if (booksFromApi) {
+          handleSetSearchResults(booksFromApi);
+        } else console.log('booksFromApi undefined');
       } catch (e) {
         console.log(`Error fetching books: ${(e as Error).message}`);
       } finally {
