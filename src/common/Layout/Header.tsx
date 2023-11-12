@@ -34,7 +34,7 @@ const Header = () => {
           </div>
 
           <div className="hidden items-center justify-right sm:ml-[4rem] sm:flex ">
-            <Button to="/browse" type="ternary">
+            <Button to="/mybooks" type="ternary">
               My list
             </Button>
             <Button to="/dashboard" type="ternary">

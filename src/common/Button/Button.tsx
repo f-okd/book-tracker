@@ -8,7 +8,7 @@ interface IButton {
   type: 'small' | 'ternary';
 }
 
-function Button({ children, disabled, to, type }: IButton) {
+function Button({ children, disabled, to, type, ...props }: IButton) {
   const base =
     ' text-primary text-center bg-ternary rounded font-semibold uppercase tracking-widest disabled:cursor-not-allowed';
 
@@ -29,7 +29,11 @@ function Button({ children, disabled, to, type }: IButton) {
     );
 
   return (
-    <button disabled={disabled} className={styles[type as 'small' | 'ternary']}>
+    <button
+      disabled={disabled}
+      {...props}
+      className={styles[type as 'small' | 'ternary']}
+    >
       {children}
     </button>
   );

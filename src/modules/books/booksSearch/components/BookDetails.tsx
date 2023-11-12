@@ -1,5 +1,5 @@
-import Button from '../../../common/Button/Button';
-import { IBook } from '../../../utils/types';
+import Button from '../../../../common/Button/Button';
+import { IBook } from '../../../../utils/types';
 
 interface IBookDetails {
   book: IBook;

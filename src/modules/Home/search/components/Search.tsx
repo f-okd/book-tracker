@@ -1,23 +1,26 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { parseBook } from '../../../../utils/helpers';
 import { IBook } from '../../../../utils/types';
 import { searchForBooksFromGoogle } from '../../../../services/googleBooks/apiGoogleBooks';
-import Loader from '../../../../common/Loader/Loader';
 
 interface ISearch {
   value: string;
   handleSetSearchResults: (books: IBook[]) => void;
+  toggleIsLoading: (bool: boolean) => void;
   children: ReactNode;
 }
 
-const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+const Search = ({
+  value,
+  handleSetSearchResults,
+  toggleIsLoading,
+  children,
+}: ISearch) => {
   useEffect(() => {
     const controller = new AbortController();
     const fetchBooks = async () => {
       try {
-        setIsLoading(true);
+        toggleIsLoading(true);
 
         const response = await searchForBooksFromGoogle(value, controller);
 
@@ -33,7 +36,7 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
       } catch (e) {
         console.log(`Error fetching books: ${(e as Error).message}`);
       } finally {
-        setIsLoading(false);
+        toggleIsLoading(false);
       }
     };
 
@@ -47,9 +50,9 @@ const Search = ({ value, handleSetSearchResults, children }: ISearch) => {
       - so in the cleanup function, we abort the current fetch request before sending a new one every keystroke
     */
     return () => controller.abort();
-  }, [value, handleSetSearchResults]);
+  }, [value, handleSetSearchResults, toggleIsLoading]);
 
-  return <>{isLoading ? <Loader /> : children}</>;
+  return <>{children}</>;
 };
 
 export default Search;
