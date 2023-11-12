@@ -26,6 +26,23 @@ Helpful resources:
 - I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
 - The google books API is so thoroughly documented with more than enough features to complete this project, which meant that the complexity of the database was very minimal.
   - i.e. the only information I needed store about a book was it's ID.
+- We only have 1 supabase table for reviews because Supabase manages users + authentication for us
+
+Reviews Table:
++-----------+--------+---------+----------+-------------------------+
+| review_id | book_id | user_id | rating | comment |
++-----------+--------+---------+----------+-------------------------+
+| 1 | 123 | 456 | 4.5 | Great book! Highly rec. |
+| 2 | 124 | 457 | 3.8 | Good read, but not best |
+| 3 | 123 | 458 | 5.0 | Excellent! Must-read. |
+| 4 | 125 | 459 | 2.5 | Disappointed. |
++-----------+--------+---------+----------+-------------------------+
+
+- review_id is a unique identifier for each review.
+- book_id is a foreign key referring to the book being reviewed.
+- user_id is a foreign key referring to the user who wrote the review.
+- rating is the user's rating for the book (e.g., on a scale from 1 to 5).
+- comment is the written review or comment provided by the user.
 
 ### Using Google Books API:
 
@@ -57,7 +74,7 @@ export const parseBook = (apiResponse: any): IBook => {
 
 ```
 
-[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a [volume resource](https://developers.google.com/books/docs/v1/reference/volumes)
+[How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a volume resource
 
 ```
 // Fetching a single book using an Id
@@ -70,7 +87,7 @@ export const getBook = async (bookId: string) => {
 };
 ```
 
-[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): GET https://www.googleapis.com/books/v1/volumes?q=quilting returns an array of [volume resource](https://developers.google.com/books/docs/v1/reference/volumes)s
+[How to search for a book](https://developers.google.com/books/docs/v1/getting_started): GET https://www.googleapis.com/books/v1/volumes?q=quilting returns an array of volume resources
 
 ```
 export const getBooks = async (

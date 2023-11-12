@@ -15,11 +15,11 @@ const Home = () => {
     setSearchValue(target.value);
   };
 
-  // memoize this because it gets redefined every time Home component is rerendered
-  // which happens to be everytime the user query changes
+  // Memoize this because it gets redefined every time Home component is rerendered
+  // The useEffect hook in Search.tsx will enter an infinite loop without it
   const handleSetSearchResults = useCallback((books: IBook[]) => {
     setSearchResults(books);
-  }, []); // Empty dependency array indicates this function will be memoized until the component unmounts
+  }, []);
 
   return (
     <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-center items-center pt-1/3 min-h-screen">
