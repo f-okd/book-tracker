@@ -32,6 +32,30 @@ Helpful resources:
 - See implementation: src/services/apiGoogleBooks.ts
 - We the Google Books Rest API
 - You don't actually need a Google API Key/any form of authentication to get started with this because we're only accessing public data about volumes
+- We are either fetching a book (Called a [volume](https://developers.google.com/books/docs/v1/reference/volumes) in documentation) or a list of books of this type in json format:
+- We destructure it and extract only the information relevant to this project:
+
+```
+export const parseBook = (apiResponse: any): IBook => {
+  const { id, volumeInfo } = apiResponse;
+  const { title, authors, publishedDate, description, imageLinks } =
+    volumeInfo ?? {};
+  const { smallThumbnail, thumbnail } = imageLinks ?? {};
+
+  const extractedData = {
+    id,
+    title,
+    authors,
+    publishedDate,
+    description,
+    smallThumbnail,
+    thumbnail,
+  };
+
+  return extractedData;
+};
+
+```
 
 [How to fetch a book](https://developers.google.com/books/docs/v1/reference/volumes/get): GET https://www.googleapis.com/books/v1/volumes/volumeId returns a [volume resource](https://developers.google.com/books/docs/v1/reference/volumes)
 
