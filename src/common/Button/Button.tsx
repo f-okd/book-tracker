@@ -6,6 +6,7 @@ interface IButton {
   disabled?: boolean;
   to?: string;
   type: 'small' | 'ternary';
+  onClick?: () => void;
 }
 
 function Button({ children, disabled, to, type, ...props }: IButton) {

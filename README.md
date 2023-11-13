@@ -28,18 +28,19 @@ Helpful resources:
 
 Reviews Table:
 
-| review_id | book_id | rating | comment                 |
-| --------- | ------- | ------ | ----------------------- |
-| 1         | 123     | 4      | Great book! Highly rec. |
-| 2         | 124     | 3      | Good read, but not best |
-| 3         | 123     | 5      | Excellent! Must-read.   |
-| 4         | 125     | 2      | Disappointed.           |
+| review_id | book_id | rating | comment                 | status  |
+| --------- | ------- | ------ | ----------------------- | ------- |
+| 1         | 123     | 4      | Great book! Highly rec. | toRead  |
+| 2         | 124     | 3      | Good read, but not best | reading |
+| 3         | 123     | 5      | Excellent! Must-read.   | read    |
+| 4         | 125     | 2      | Disappointed.           | dnf     |
 
 - review_id:int8 is a unique identifier for each review.
 - book_id:text would be a foreign key referring to the book being reviewed if we had a books table
 - user_id:uuid is a foreign key referring to the user who wrote the review.
 - rating:int2 is the user's rating for the book (e.g., on a scale from 1 to 5).
 - comment:text is the written review or comment provided by the user.
+- status:text is about whether the user has read, is reading, wants to read or didn't finish the book
 
 ### Using Google Books API:
 
@@ -101,13 +102,17 @@ export const getBooks = async (
 ### Working with Supbase
 
 - User management tutorial for react: [Official documentation](https://supabase.com/docs/guides/getting-started/tutorials/with-react)
-- Need to install supabase package: npm i --save @Supabase/supabase-js
-- Can also use Supabase CLI to [generate types](https://supabase.com/docs/guides/api/rest/generating-types) based on database schema: gen types typescript --project-id abcdefghijklmnopqrst > database.types.ts
-- Projects have a RESTful endpoint that you can use with your project's API key to query and manage your database. I've put the keys in my .env file.
-
-- [Connect to your project](https://supabase.com/dashboard/project/pyqlglhglzmuijyvufkr/auth/providers):
+- Need to install supabase package:
 
 ```
+npm i --save @Supabase/supabase-js
+```
+
+- Projects have a RESTful endpoint that you can use with your project's API key to query and manage your database. I've put the keys in my .env file.
+- [Connect to your project](https://supabase.com/dashboard/project/pyqlglhglzmuijyvufkr/auth/providers): We need to initialise a supabase client that we use to make db requests
+
+```
+
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.PROJECT_URL;
@@ -118,6 +123,32 @@ export default supabase;
 
 ```
 
+- For typescript users we can also use Supabase CLI to [generate types](https://supabase.com/docs/guides/api/rest/generating-types) based on database schema, we can now leverage intellisense for debugging:
+  - note if you're using VSCODE on windows you may have to run this from terminal (didn't work in vscode for me)
+
+```
+  npm i supabase@">=1.8.1" --save-dev
+  npx supabase login
+  npx supabase gen types typescript --project-id "$PROJECT_REF" --schema public > types/supabase.ts
+
+```
+
+example of using types:
+
+```
+export const getBooksFromDb = async (): Promise<
+  Database['public']['Tables']['UserBooks']['Row'][]
+> => {
+  const { data: books, error } = await supabase.from('UserBooks').select('*');
+
+  if (error) {
+    console.error(error);
+    throw new Error("Couldn't fetch books from supabase");
+  }
+  return books;
+};
+```
+
 ### React query
 
 - [Install react-query](https://tanstack.com/query/latest/docs/react/installation) for remote state management, meaning it will take over data fetching and storage for this application
@@ -125,6 +156,7 @@ export default supabase;
 - [Install the devtools](https://tanstack.com/query/latest/docs/react/devtools) so that we can track the state
 
 ```
+
 npm i @tanstack/react-query
 npm i -D @tanstack/eslint-plugin-query
 npm i @tanstack/react-query-devtools
@@ -134,27 +166,34 @@ npm i @tanstack/react-query-devtools
 Wrap Application with QueryClientProvider so we can provide data to the whole tree
 
 ```
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { routesConfig } from './Routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
+defaultOptions: {
+queries: {
+staleTime: 0,
+},
+},
 });
 
 function App() {
-  const router = createBrowserRouter(routesConfig);
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+const router = createBrowserRouter(routesConfig);
+return (
+<QueryClientProvider client={queryClient}>
+<RouterProvider router={router} />
+</QueryClientProvider>
+);
 }
 
 export default App;
 
 ```
+
+### React router
+
+- With react-router we can use loaders for "render as you fetch" functionality, so that means we can assign data to be fetched from a particular path/route
+  - We can also fetch data from that route without visiting it using fetchers, thereby associating specific routes with specific data
+  - i.e. in this project /mybooks/read loader will call the supabase api function to retrieve records of all read books

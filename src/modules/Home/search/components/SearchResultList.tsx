@@ -9,7 +9,7 @@ const SearchResultList = ({ searchResults }: ISearchResults) => {
   return (
     <div className="flex flex-col w-[90%] sm:w-[60%]">
       {searchResults.map((searchResult) => (
-        <SearchResultItem book={searchResult} />
+        <SearchResultItem key={searchResult.id} book={searchResult} />
       ))}
     </div>
   );
