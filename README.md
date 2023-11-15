@@ -12,6 +12,7 @@
 - React-router: Used to manage client side routing, and enables SPA feature of navigating between pages without reloading.
 - [Tailwind](https://tailwindcss.com/docs/guides/vite): Styling, MUI was also a good choice and would probably be faster for development but I prefer the increased control over component styling provided with TW
 - Axios: Fetching data
+- Toaster
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 - [Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/reactjs): Backend-as-a-service (BaaS)
 - [Book Logo](https://www.svgrepo.com/svg/513520/book-closed)
@@ -197,3 +198,11 @@ export default App;
 - With react-router we can use loaders for "render as you fetch" functionality, so that means we can assign data to be fetched from a particular path/route
   - We can also fetch data from that route without visiting it using fetchers, thereby associating specific routes with specific data
   - i.e. in this project /mybooks/read loader will call the supabase api function to retrieve records of all read books
+
+notes:
+
+state:
+
+- fetch userbooks in redux straight awya
+  user
+  books - booklist - book details page

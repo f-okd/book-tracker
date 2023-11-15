@@ -7,7 +7,7 @@ interface IMininav {
 
 const Mininav = ({ toggleSetFilterBy }: IMininav) => {
   return (
-    <>
+    <div className="flex flex-row pb-3">
       <Button type="ternary" onClick={() => toggleSetFilterBy('reading')}>
         Reading
       </Button>
@@ -20,7 +20,7 @@ const Mininav = ({ toggleSetFilterBy }: IMininav) => {
       <Button type="ternary" onClick={() => toggleSetFilterBy('dnf')}>
         Did not finish
       </Button>
-    </>
+    </div>
   );
 };
 

@@ -1,14 +1,17 @@
-import { Database } from '../../../../../types/supabase';
+/*
+  Different function fetches all records in the DB
+  This hook splits the books into an object of multiple arrays, indexed/accessible by status value
+*/
 
-type UserBooksRow = Database['public']['Tables']['UserBooks']['Row'];
+import { ReviewsRecord } from '../../../../services/supabase/apiBooks';
 
 type BooksByStatus = {
-  [key: string]: UserBooksRow[];
+  [key: string]: ReviewsRecord[];
 };
 
-// give default value of empty array or we'll clash with react query in BookListPage.tsx
+// Give default value of empty array or we'll clash with react query in BookListPage.tsx if empty (its always expecting an array)
 export const useCategoriseBooksFromDb = (
-  books: UserBooksRow[] = [],
+  books: ReviewsRecord[] = [],
 ): BooksByStatus => {
   const categorisedBooks: BooksByStatus = {
     read: [],
@@ -27,7 +30,7 @@ export const useCategoriseBooksFromDb = (
       case 'didNotFinish':
         categorisedBooks.didNotFinish.push(book);
         break;
-      // if null then its just been added to their list
+      // If null then its just been added to their list => mark as to read
       default:
         categorisedBooks.toRead.push(book);
     }

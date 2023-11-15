@@ -34,7 +34,7 @@ const BookListPage = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-row justify-center items-center pt-1/3 min-h-screen">
+    <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-top items-center pt-1/3 min-h-screen">
       <Mininav toggleSetFilterBy={handleSetStatustFilter} />
       {statusFilter && <BookList status={statusFilter} books={books} />}
     </main>

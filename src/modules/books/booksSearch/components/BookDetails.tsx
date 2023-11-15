@@ -1,11 +1,13 @@
 import Button from '../../../../common/Button/Button';
 import { IBook } from '../../../../utils/types';
+import { useMarkBookAsToRead } from '../../booksUser/hooks/useMarkBookAsToRead';
 
 interface IBookDetails {
   book: IBook;
 }
 
 const BookDetails = ({ book }: IBookDetails) => {
+  const { isMarkingToRead, markAsToRead } = useMarkBookAsToRead();
   return (
     <div
       id="bookCard"
@@ -31,7 +33,15 @@ const BookDetails = ({ book }: IBookDetails) => {
         </p>
       )}
 
-      <Button type="ternary">Add to List</Button>
+      <Button
+        type="ternary"
+        disabled={isMarkingToRead === 'pending'}
+        onClick={() =>
+          markAsToRead({ book_id: book.id, book_title: book.title })
+        }
+      >
+        Add to List
+      </Button>
     </div>
   );
 };
