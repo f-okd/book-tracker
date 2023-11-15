@@ -1,3 +1,7 @@
+/*
+This component is a book card component found that's iteratively generated in the user's list
+*/
+
 import { useFetcher, useNavigate } from 'react-router-dom';
 import { ReviewsRecord } from '../../../../services/supabase/apiBooks';
 import { IBook } from '../../../../utils/types';
@@ -31,15 +35,66 @@ const BookPreview = ({
     isRemovingBook === 'pending';
 
   useEffect(() => {
+    /* 
+      "/book/book_id" route has a loader that fetches book data from the google books api
+      we use the fetcher from useFetcher hook of react-router to fetch data loaded in a route without navigating to that route
+    */
     fetcher.load(`/book/${book.book_id}`);
-    // todo: refactor You realllly shouldn't do this but alas here we are, i dont believer this fetcher needs to be in dependancy array because its use is very limited
+
+    /*
+      todo: refactor -> fetcher SHOULD be in dependancy array but i can't figure out how to memoize it or work around this
+      I decided to remove fetcher object from dependancy array because its use is very limited, (this is why you shouldn't use useEffect btw)
+    */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book.book_id]);
 
+  /* 
+      These are the options/operations that will be generated for a book card component,
+       depending on what section of the list you are on
+    */
+  const renderButtons = (status: statusType, isLoading: boolean) => {
+    switch (status) {
+      case 'reading':
+        return (
+          <>
+            <Button
+              type="ternary"
+              disabled={isLoading}
+              onClick={() => markBookAsRead(book.book_id)}
+            >
+              Mark read
+            </Button>
+            <Button
+              type="ternary"
+              disabled={isLoading}
+              onClick={() => dropBook(book.book_id)}
+            >
+              Mark dropped
+            </Button>
+          </>
+        );
+      case 'toRead':
+      case 'dnf':
+        return (
+          <Button
+            type="ternary"
+            disabled={isLoading}
+            onClick={() => markBookAsReading(book.book_id)}
+          >
+            Mark reading
+          </Button>
+        );
+      default:
+        return null;
+    }
+  };
+
+  /* 
+    Error handling: We dont render the component unless the books were (successfully) fetched
+  */
   if (fetcher.state === 'loading') return <Loader />;
   if (fetcher.state === 'idle' && !fetcher.data)
     return <div>No data found</div>;
-
   if (fetcher.data) {
     const bookData = fetcher.data;
     console.log(status);
@@ -62,35 +117,7 @@ const BookPreview = ({
         >
           Remove
         </Button>
-        {status === 'reading' ? (
-          <>
-            <Button
-              type="ternary"
-              disabled={isLoading}
-              onClick={() => markBookAsRead(book.book_id)}
-            >
-              Mark read
-            </Button>
-            <Button
-              type="ternary"
-              disabled={isLoading} // todo:// check for other loading status'
-              onClick={() => dropBook(book.book_id)}
-            >
-              Mark dropped
-            </Button>
-          </>
-        ) : status === ('toRead' || 'dnf') ? (
-          <Button
-            type="ternary"
-            disabled={isLoading}
-            onClick={() => markBookAsReading(book.book_id)}
-          >
-            Mark reading
-          </Button>
-        ) : (
-          // need to complete the ternary with something
-          ''
-        )}
+        {renderButtons(status, isLoading)}
       </div>
     );
   }
