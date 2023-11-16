@@ -1,3 +1,7 @@
+/*
+  Abstract react query mutation function for marking books as "dnf" in the database
+*/
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { supabaseMarkBookAsDropped } from '../../../services/supabase/apiBooks';

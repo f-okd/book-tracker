@@ -1,3 +1,8 @@
+/*
+  This is the navigation bar on the user's "reading list"
+  They can filter books by status i.e. only books marked as read will be visible if they click read
+*/
+
 import Button from '../../../common/Button/Button';
 import { statusType } from './BookListPage';
 

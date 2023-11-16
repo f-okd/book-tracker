@@ -1,3 +1,9 @@
+/*
+
+Built this while following Jonas Schedtmann's course
+
+*/
+
 // import React, { useState } from 'react';
 
 // const containerStyle = {

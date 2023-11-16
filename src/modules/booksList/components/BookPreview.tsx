@@ -1,5 +1,8 @@
 /*
-This component is a book card component found that's iteratively generated in the user's list
+  - This component is a mini book card component displayed in the users "reading list" 
+  - BookList.tsx component iteratively calls this to generate a subset of the user's entire reading list 
+  
+  - It takes in a book object all books with this status will be rendered 
 */
 
 import { useFetcher, useNavigate } from 'react-router-dom';
@@ -14,13 +17,10 @@ import { useMarkBookAsRead } from '../hooks/useMarkBookAsRead';
 import { useMarkBookAsReading } from '../hooks/useMarkBookAsReading';
 import { useRemoveBookFromList } from '../hooks/useRemoveBookFromList';
 
-const BookPreview = ({
-  book,
-  status,
-}: {
+interface IBookPreview {
   book: ReviewsRecord;
-  status: statusType;
-}) => {
+}
+const BookPreview = ({ book }: IBookPreview) => {
   const fetcher = useFetcher<IBook>();
   const navigate = useNavigate();
   const { isDroppingBook, dropBook } = useMarkBookAsDropped();
@@ -49,11 +49,12 @@ const BookPreview = ({
   }, [book.book_id]);
 
   /* 
-      These are the options/operations that will be generated for a book card component,
-       depending on what section of the list you are on
-    */
-  const renderButtons = (status: statusType, isLoading: boolean) => {
-    switch (status) {
+    These are the options/operations that will be generated for a book card component,
+      depending on what section of the list you are on
+  */
+  const renderButtons = (isLoading: boolean) => {
+    const bookStatus = book.status as statusType;
+    switch (bookStatus) {
       case 'reading':
         return (
           <>
@@ -117,7 +118,7 @@ const BookPreview = ({
         >
           Remove
         </Button>
-        {renderButtons(status, isLoading)}
+        {renderButtons(isLoading)}
       </div>
     );
   }

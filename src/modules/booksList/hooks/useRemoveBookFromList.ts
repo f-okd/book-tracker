@@ -1,3 +1,7 @@
+/*
+  Abstract react query mutation function for removing books from the database
+*/
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { supabaseRemoveBookFromList } from '../../../services/supabase/apiBooks';

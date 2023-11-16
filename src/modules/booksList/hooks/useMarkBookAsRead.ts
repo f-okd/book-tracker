@@ -1,3 +1,7 @@
+/*
+  Abstract react query mutation function for marking books as read in the database
+*/
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { supabaseMarkBookAsRead } from '../../../services/supabase/apiBooks';

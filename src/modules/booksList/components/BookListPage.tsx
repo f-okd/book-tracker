@@ -1,3 +1,13 @@
+/*
+  BookListPage.tsx
+  - Acts as "middleware" between db/server and the booklist that will be displayed
+  - Attempts to fetch all the book records for a user
+  - Manages the state of the status filter which is used to control which books to display in the list depending on status
+    - "toRead" | "reading" | "read" | "dnf"
+  - Mininav navbar contains the actual buttons used to mutate local status filter state
+  - BookList component takes in status filter and all books fetched from db and renders accordingly 
+*/
+
 import { useState } from 'react';
 import Mininav from './Mininav';
 import BookList from './BookList';
@@ -13,6 +23,7 @@ const BookListPage = () => {
   const [statusFilter, setStatusFilter] = useState<statusType>('');
 
   const handleSetStatustFilter = (status: statusType) => {
+    console.log('changing status to:' + status);
     setStatusFilter(status);
   };
   const {
@@ -36,7 +47,9 @@ const BookListPage = () => {
   ) : (
     <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-top items-center pt-1/3 min-h-screen">
       <Mininav toggleSetFilterBy={handleSetStatustFilter} />
-      {statusFilter && <BookList status={statusFilter} books={books} />}
+      {statusFilter && (
+        <BookList statusToFilterBy={statusFilter} books={books} />
+      )}
     </main>
   );
 };

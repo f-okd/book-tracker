@@ -4,6 +4,8 @@ SERVES TWO PRIMARY FUNCTIONS
 1) Displays book details passed in from BookDetailsPage.tsx
 2) Checks the database for the status of this book "toRead | Reading | Read | dnf | undefined"
     - operations available to the user for this book depends on the status of this book
+    - fetch and store the book with react query, if the record doesnt exist in the db when we try and access the status attribute
+      it will be undefined, otherwise we proceed as needed
 
 */
 import { useQuery } from '@tanstack/react-query';
@@ -18,6 +20,9 @@ interface IBookDetails {
   book: IBook;
 }
 
+/*
+  Book details card
+*/
 const BookDetails = ({ book }: IBookDetails) => {
   const { isMarkingToRead, markAsToRead } = useMarkBookAsToRead();
   const {
@@ -36,6 +41,9 @@ const BookDetails = ({ book }: IBookDetails) => {
 
   const reviewData = review[0] || [];
 
+  /*
+    Decide buttons/review form to render based on current book status 
+  */
   const renderButtonOptionsByStatus = (status: string | null): ReactElement => {
     switch (status) {
       case 'dnf':

@@ -1,6 +1,7 @@
 /*
-  Different function fetches all records in the DB
-  This hook splits the books into an object of multiple arrays, indexed/accessible by status value
+  A different function fetches all records in the DB
+  This hook splits the books into an object of multiple arrays, indexed/accessible by status value 
+    -  statusType: "toRead" | "reading" | "read" | "dnf"
 */
 
 import { ReviewsRecord } from '../../../services/supabase/apiBooks';
