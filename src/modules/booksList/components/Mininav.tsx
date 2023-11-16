@@ -1,4 +1,4 @@
-import Button from '../../../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 import { statusType } from './BookListPage';
 
 interface IMininav {

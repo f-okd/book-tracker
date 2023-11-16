@@ -1,4 +1,4 @@
-import { AllBooksByStatus } from '../../../../services/supabase/apiBooks';
+import { AllBooksByStatus } from '../../../services/supabase/apiBooks';
 import { statusType } from './BookListPage';
 import BookPreview from './BookPreview';
 

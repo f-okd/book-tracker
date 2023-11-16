@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
-import { IBook } from '../../../../utils/types';
-import { searchForBooksFromGoogle } from '../../../../services/googleBooks/apiGoogleBooks';
+import { IBook } from '../../../utils/types';
+import { searchForBooksFromGoogle } from '../../../services/googleBooks/apiGoogleBooks';
 
 interface ISearch {
   value: string;

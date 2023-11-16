@@ -3,12 +3,12 @@ This component is a book card component found that's iteratively generated in th
 */
 
 import { useFetcher, useNavigate } from 'react-router-dom';
-import { ReviewsRecord } from '../../../../services/supabase/apiBooks';
-import { IBook } from '../../../../utils/types';
-import Loader from '../../../../common/Loader/Loader';
+import { ReviewsRecord } from '../../../services/supabase/apiBooks';
+import { IBook } from '../../../utils/types';
+import Loader from '../../../common/Loader/Loader';
 import { useEffect } from 'react';
 import { statusType } from './BookListPage';
-import Button from '../../../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 import { useMarkBookAsDropped } from '../hooks/useDropBook';
 import { useMarkBookAsRead } from '../hooks/useMarkBookAsRead';
 import { useMarkBookAsReading } from '../hooks/useMarkBookAsReading';

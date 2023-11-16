@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { supabaseMarkBookAsToRead } from '../../../../services/supabase/apiBooks';
+import { supabaseMarkBookAsToRead } from '../../../services/supabase/apiBooks';
 
 export const useMarkBookAsToRead = () => {
   const queryClient = useQueryClient();

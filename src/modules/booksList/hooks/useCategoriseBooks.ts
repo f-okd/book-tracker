@@ -3,7 +3,7 @@
   This hook splits the books into an object of multiple arrays, indexed/accessible by status value
 */
 
-import { ReviewsRecord } from '../../../../services/supabase/apiBooks';
+import { ReviewsRecord } from '../../../services/supabase/apiBooks';
 
 type BooksByStatus = {
   [key: string]: ReviewsRecord[];

@@ -10,6 +10,20 @@ export interface AllBooksByStatus {
   dnf: ReviewsRecord[];
 }
 
+export const supabaseGetBookFromDb = async (
+  book_id: string,
+): Promise<ReviewsRecord[]> => {
+  const query = supabase.from('Reviews').select('*').eq('book_id', book_id);
+  const { data, error } = await query;
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error marking book as reading');
+  }
+
+  return data as ReviewsRecord[];
+};
+
 export const getBooksFromDb = async (): Promise<AllBooksByStatus> => {
   let reading: ReviewsRecord[] = [];
   let read: ReviewsRecord[] = [];

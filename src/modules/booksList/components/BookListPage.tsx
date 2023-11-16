@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Mininav from './Mininav';
 import BookList from './BookList';
-import { getBooksFromDb } from '../../../../services/supabase/apiBooks';
+import { getBooksFromDb } from '../../../services/supabase/apiBooks';
 import { useQuery } from '@tanstack/react-query';
-import Loader from '../../../../common/Loader/Loader';
-import Error from '../../../../common/Error/Error';
+import Loader from '../../../common/Loader/Loader';
+import Error from '../../../common/Error/Error';
 
 export type statusType = 'read' | 'reading' | 'dnf' | 'toRead' | '';
 //fetch book status records from db UserBooks table, categorise them, then load them in their respective components
