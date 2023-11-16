@@ -1,9 +1,15 @@
+/*
+  Home page
+    - manages state of search results - will only be 8 cards at a time
+    - stores the state of searchValue which is controlled by the searchbar element
+*/
+
 import { SyntheticEvent, useCallback, useState } from 'react';
 
 import { IBook } from '../../../utils/types';
 
 import Search from './Search';
-import SearchBar from '../../../common/SearchBar/SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 import SearchResultList from './SearchResultList';
 import Loader from '../../../common/Loader/Loader';
 

@@ -49,6 +49,7 @@ const BookPreview = ({ book }: IBookPreview) => {
   }, [book.book_id]);
 
   /* 
+    todo:// move renderButtons logic out of this file
     These are the options/operations that will be generated for a book card component,
       depending on what section of the list you are on
   */

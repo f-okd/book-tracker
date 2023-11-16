@@ -1,3 +1,7 @@
+/*
+  Card component for a single book record from the search results
+*/
+
 import Button from '../../../common/Button/Button';
 import { IBook } from '../../../utils/types';
 

@@ -1,3 +1,9 @@
+/*
+  - Search bar on home page
+  - controlled element, 
+  - onchange it mutates the searchValue variable stored in Home.tsx, which triggers an api call to googlebooksapi
+  */
+
 import { SyntheticEvent } from 'react';
 
 interface ISearchBar {

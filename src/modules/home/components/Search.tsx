@@ -1,3 +1,12 @@
+/*
+  Search.tsx
+    - mostly manages the logic for querying googlebooks api everytime the user presses a key, 
+      - updates the state of searchResults variable with each response
+      - will only send a request after more than 3 characters have been typed
+      - use abort controller to manage sending too many requests
+    - children prop is the searchbar which has access to its 
+*/
+
 import { ReactNode, useEffect } from 'react';
 import { IBook } from '../../../utils/types';
 import { searchForBooksFromGoogle } from '../../../services/googleBooks/apiGoogleBooks';
@@ -51,6 +60,7 @@ const Search = ({
 export default Search;
 
 // Not sure if i want to implement this:
+// todo:// pagination:
 //   const loadMore = async () => {
 //     const resources = await axios.get(
 //       `https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=8&startIndex=${details.length}`,
