@@ -55,6 +55,7 @@ const BookPreview = ({ book }: IBookPreview) => {
   */
   const renderButtons = (isLoading: boolean) => {
     const bookStatus = book.status as statusType;
+    console.log(bookStatus);
     switch (bookStatus) {
       case 'reading':
         return (
@@ -103,10 +104,10 @@ const BookPreview = ({ book }: IBookPreview) => {
     return (
       <div
         id="bookCard"
-        className="flex flex-col bg-secondary p-1 w-[100px] h-[150px] sm:w-[150px] sm:h-[250px] rounded-3xl border border-ternary hover:cursor-pointer"
+        className="flex flex-col bg-secondary p-2 m-2 w-[180px] h-[430px] sm:w-[150px] sm:h-[250px] rounded-3xl border border-ternary hover:cursor-pointer"
       >
         <img
-          className="self-center border border-ternary rounded-xl mb-1"
+          className="self-center border w-[180px] border-ternary rounded-xl mb-1"
           src={bookData.thumbnail ?? 'bookNotFound.png'}
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}

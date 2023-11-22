@@ -6,6 +6,7 @@ import Book from './modules/booksSearch/components/BookDetailsPage';
 import { loader as bookLoader } from './modules/booksSearch/components/BookDetailsPage';
 import Login from './modules/auth/components/Login';
 import BookListPage from './modules/booksList/components/BookListPage';
+import ProtectedRoute from './modules/auth/components/ProtectedRoute';
 
 // need to keep routes config separate so we can instantiate different types of routers for tests/production
 // see App.test.tsx for use with MemoryRouter
@@ -16,7 +17,11 @@ export const routesConfig = [
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/login',
@@ -24,17 +29,29 @@ export const routesConfig = [
       },
       {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/book/:bookId',
         element: <Book />,
         loader: bookLoader,
-        errorElement: <Error />,
+        errorElement: (
+          <ProtectedRoute>
+            <Error />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/mybooks',
-        element: <BookListPage />,
+        element: (
+          <ProtectedRoute>
+            <BookListPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

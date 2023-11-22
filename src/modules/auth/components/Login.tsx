@@ -1,12 +1,18 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
+import { useLogin } from '../hooks/useLogin';
 
-const Login: FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState('b@b.com');
+  const [password, setPassword] = useState('123456');
+  const { login, isLoggingIn } = useLogin();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Logging in with:', email, password);
+
+    if (!email || !password) return;
+
+    login({ email, password });
   };
 
   return (
@@ -28,6 +34,7 @@ const Login: FC = () => {
             type="text"
             placeholder="Email"
             value={email}
+            disabled={isLoggingIn}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -44,16 +51,18 @@ const Login: FC = () => {
             type="password"
             placeholder="******************"
             value={password}
+            disabled={isLoggingIn}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="flex items-center justify-between">
           {/*todo: FIX BUTTON STYLING */}
           <button
-            className="bg-ternary hover:bg-blue-700 text-ternary font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            disabled={isLoggingIn}
+            className="bg-ternary hover:bg-blue-700 text-primary font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Sign In
+            {!isLoggingIn ? 'Sign In' : '....logging in'}
           </button>
         </div>
       </form>
