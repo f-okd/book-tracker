@@ -8,11 +8,18 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Logging in with:', email, password);
 
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail('');
+          setPassword('');
+        },
+      },
+    );
   };
 
   return (
@@ -56,7 +63,6 @@ const Login = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          {/*todo: FIX BUTTON STYLING */}
           <button
             disabled={isLoggingIn}
             className="bg-ternary hover:bg-blue-700 text-primary font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

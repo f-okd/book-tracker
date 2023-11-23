@@ -12,47 +12,35 @@ import ProtectedRoute from './modules/auth/components/ProtectedRoute';
 // see App.test.tsx for use with MemoryRouter
 export const routesConfig = [
   {
-    element: <Layout />, // will wrap around child routes
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     errorElement: <Error />,
     children: [
       {
         path: '/',
-        element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: '/login',
-        element: <Login />,
+        element: <Home />,
       },
       {
         path: '/dashboard',
-        element: (
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        ),
+        element: <Dashboard />,
       },
       {
         path: '/book/:bookId',
         element: <Book />,
         loader: bookLoader,
-        errorElement: (
-          <ProtectedRoute>
-            <Error />
-          </ProtectedRoute>
-        ),
+        errorElement: <Error />,
       },
       {
         path: '/mybooks',
-        element: (
-          <ProtectedRoute>
-            <BookListPage />
-          </ProtectedRoute>
-        ),
+        element: <BookListPage />,
       },
     ],
+  },
+  {
+    element: <Login />,
+    path: 'login',
   },
 ];

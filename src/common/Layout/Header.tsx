@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
+import Logout from '../../modules/auth/components/Logout';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +41,7 @@ const Header = () => {
             <Button to="/dashboard" type="ternary">
               Dashboard
             </Button>
+            <Logout />
           </div>
         </nav>
       </header>
