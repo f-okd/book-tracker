@@ -38,11 +38,12 @@ const BookPreview = ({ book }: IBookPreview) => {
     Error handling: We dont render the component unless the books were (successfully) fetched
   */
   if (fetcher.state === 'loading') return <Loader />;
+
   if (fetcher.state === 'idle' && !fetcher.data)
     return <div>No data found</div>;
+
   if (fetcher.data) {
     const bookData = fetcher.data;
-    console.log(status);
     return (
       <div
         id="bookCard"
@@ -59,6 +60,7 @@ const BookPreview = ({ book }: IBookPreview) => {
           bookStatus={book.status as statusType}
           book_title={book.book_title}
           book_id={book.book_id}
+          comment={book.comment}
         />
       </div>
     );

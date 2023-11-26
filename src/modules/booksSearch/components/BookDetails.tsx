@@ -14,6 +14,7 @@ import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
 import Loader from '../../../common/Loader/Loader';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { statusType } from '../../booksList/components/BookListPage';
+import Review from '../../booksList/components/Review';
 
 interface IBookDetails {
   book: IBook;
@@ -63,10 +64,12 @@ const BookDetails = ({ book }: IBookDetails) => {
           {book.description}
         </p>
       )}
+      <Review status={reviewData.status} comment={reviewData.comment} />
       <ButtonOptions
         bookStatus={reviewData.status as statusType}
         book_id={book.id}
         book_title={book.title}
+        comment={reviewData.comment}
       />
     </div>
   );

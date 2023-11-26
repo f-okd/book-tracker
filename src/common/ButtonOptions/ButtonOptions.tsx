@@ -17,9 +17,15 @@ interface IButtonOptions {
   bookStatus: statusType;
   book_id: string;
   book_title: string;
+  comment: string | null;
 }
 
-const ButtonOptions = ({ bookStatus, book_id, book_title }: IButtonOptions) => {
+const ButtonOptions = ({
+  bookStatus,
+  book_id,
+  book_title,
+  comment,
+}: IButtonOptions) => {
   const user = useUser().user;
   const user_id = user?.id ?? '';
 
@@ -85,13 +91,24 @@ const ButtonOptions = ({ bookStatus, book_id, book_title }: IButtonOptions) => {
         </>
       );
     case 'read':
+      console.log(comment);
+      if (!comment)
+        return (
+          <Button
+            type="ternary"
+            disabled={isLoading}
+            onClick={() => alert('added review for ' + book_id)}
+          >
+            Add a review
+          </Button>
+        );
       return (
         <Button
           type="ternary"
           disabled={isLoading}
-          onClick={() => alert('removed ' + book_id)}
+          onClick={() => alert('editted ' + book_id + ' review')}
         >
-          Add a review
+          Edit review
         </Button>
       );
     case 'reviewed':
