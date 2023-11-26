@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('b@b.com');
@@ -23,14 +24,15 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-primary">
+    <div className="flex flex-col justify-center items-center h-screen bg-primary">
+      <p className="font-bold text-3xl pb-4 text-ternary">Login</p>
       <form
         onSubmit={handleLogin}
         className="bg-secondary shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
           <label
-            className="block text-ternary text-sm font-bold mb-2"
+            className="block text-ternary sm:text-xl md:text-2xl font-semibold mb-2"
             htmlFor="email"
           >
             Email
@@ -47,7 +49,7 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-ternary text-sm font-bold mb-2"
+            className="block text-ternary sm:text-xl md:text-2xl font-semibold mb-2"
             htmlFor="password"
           >
             Password
@@ -72,6 +74,13 @@ const Login = () => {
           </button>
         </div>
       </form>
+
+      <Link
+        to="/register"
+        className="text-xl text-semibold hover:font-bold text-ternary"
+      >
+        Sign Up
+      </Link>
     </div>
   );
 };

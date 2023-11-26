@@ -10,6 +10,7 @@ export const useLogin = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: login, isPending: isLoggingIn } = useMutation({
+    //mutation fn can only take one argument so pass in an object
     mutationFn: ({ email, password }: ICredentials) =>
       supabaseLogin({ email, password }),
 

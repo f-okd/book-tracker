@@ -29,8 +29,8 @@ const Header = () => {
             <Button to="/mybooks" type="ternary">
               Browse books
             </Button>
-            <Button to="/dashboard" type="ternary">
-              Dashboard
+            <Button to="/settings" type="ternary">
+              Settings
             </Button>
           </div>
 
@@ -38,8 +38,8 @@ const Header = () => {
             <Button to="/mybooks" type="ternary">
               My list
             </Button>
-            <Button to="/dashboard" type="ternary">
-              Dashboard
+            <Button to="/settings" type="ternary">
+              Settings
             </Button>
             <Logout />
           </div>

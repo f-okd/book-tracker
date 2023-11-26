@@ -6,6 +6,7 @@ export default {
       primary: '#e4d8b4',
       secondary: '#dbc99a',
       ternary: '#2e282a',
+      errorColour: '#FF0000',
     },
   },
   plugins: [],
