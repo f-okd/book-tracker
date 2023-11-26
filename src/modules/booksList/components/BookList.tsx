@@ -33,9 +33,11 @@ const BookList = ({ statusToFilterBy = 'toRead', books }: IBookList) => {
   return (
     <>
       <h1 className="text-3xl font-bold uppercase"> {statusToFilterBy}</h1>
-      {returnDataSetByFilter(statusToFilterBy)?.map((book) => (
-        <BookPreview key={book.book_id} book={book} />
-      ))}
+      <div className="flex flex-row">
+        {returnDataSetByFilter(statusToFilterBy)?.map((book) => (
+          <BookPreview key={book.book_id} book={book} />
+        ))}
+      </div>
     </>
   );
 };

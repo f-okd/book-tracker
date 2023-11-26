@@ -16,6 +16,7 @@ import { useMarkBookAsDropped } from '../hooks/useDropBook';
 import { useMarkBookAsRead } from '../hooks/useMarkBookAsRead';
 import { useMarkBookAsReading } from '../hooks/useMarkBookAsReading';
 import { useRemoveBookFromList } from '../hooks/useRemoveBookFromList';
+import { useUser } from '../../auth/hooks/useUser';
 
 interface IBookPreview {
   book: ReviewsRecord;
@@ -27,6 +28,9 @@ const BookPreview = ({ book }: IBookPreview) => {
   const { isMarkingBookAsRead, markBookAsRead } = useMarkBookAsRead();
   const { isMarkingBookAsReading, markBookAsReading } = useMarkBookAsReading();
   const { isRemovingBook, removeBookFromList } = useRemoveBookFromList();
+
+  const user = useUser().user;
+  const user_id = user?.id ?? '';
 
   const isLoading =
     isDroppingBook === 'pending' ||
@@ -63,7 +67,7 @@ const BookPreview = ({ book }: IBookPreview) => {
             <Button
               type="ternary"
               disabled={isLoading}
-              onClick={() => markBookAsRead(book.book_id)}
+              onClick={() => markBookAsRead({ user_id, book_id: book.book_id })}
             >
               Mark read
             </Button>
@@ -104,7 +108,7 @@ const BookPreview = ({ book }: IBookPreview) => {
     return (
       <div
         id="bookCard"
-        className="flex flex-col bg-secondary p-2 m-2 w-[180px] h-[430px] sm:w-[150px] sm:h-[250px] rounded-3xl border border-ternary hover:cursor-pointer"
+        className="flex flex-col bg-secondary p-2 m-2 w-[220px] h-fit rounded-3xl border border-ternary hover:cursor-pointer"
       >
         <img
           className="self-center border w-[180px] border-ternary rounded-xl mb-1"
@@ -112,7 +116,7 @@ const BookPreview = ({ book }: IBookPreview) => {
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
-        <p className="text-base font-semibold mb-2">{bookData.title}</p>
+        <p className="text-xl font-semibold mb-2">{bookData.title}</p>
         <Button
           type="ternary"
           disabled={isLoading}

@@ -24,35 +24,42 @@ export const supabaseGetBookFromDb = async (
   return data as ReviewsRecord[];
 };
 
-export const getBooksFromDb = async (): Promise<AllBooksByStatus> => {
+export const getBooksFromDb = async (
+  user_id: string,
+): Promise<AllBooksByStatus> => {
   let reading: ReviewsRecord[] = [];
   let read: ReviewsRecord[] = [];
   let toRead: ReviewsRecord[] = [];
   let dnf: ReviewsRecord[] = [];
 
+  console.log(user_id);
   try {
     const readingResult = await supabase
       .from('Reviews')
       .select('*')
+      .eq('user_id', user_id)
       .eq('status', 'reading');
     reading = readingResult.data || [];
 
     const readResult = await supabase
       .from('Reviews')
       .select('*')
-      .eq('status', 'read');
+      .eq('status', 'read')
+      .eq('user_id', user_id);
     read = readResult.data || [];
 
     const toReadResult = await supabase
       .from('Reviews')
       .select('*')
-      .eq('status', 'toRead');
+      .eq('status', 'toRead')
+      .eq('user_id', user_id);
     toRead = toReadResult.data || [];
 
     const dnfResult = await supabase
       .from('Reviews')
       .select('*')
-      .eq('status', 'dnf');
+      .eq('status', 'dnf')
+      .eq('user_id', user_id);
     dnf = dnfResult.data || [];
   } catch (error) {
     console.error(
@@ -61,20 +68,23 @@ export const getBooksFromDb = async (): Promise<AllBooksByStatus> => {
     );
   }
 
+  console.log({ reading, read, toRead, dnf });
   return { reading, read, toRead, dnf };
 };
 
+interface IAddToList {
+  book_id: string;
+  book_title: string;
+  user_id: string;
+}
 export const supabaseMarkBookAsToRead = async ({
   book_id,
   book_title,
-}: {
-  book_id: string;
-  book_title: string;
-}) => {
-  // upsert will only make a record if it doesnt already exist
+  user_id,
+}: IAddToList) => {
   const { error } = await supabase.from('Reviews').insert({
     book_id,
-    user_id: '35c8ce94-e7ae-4161-9911-c56bbc5f7db3',
+    user_id,
     book_title,
   });
 
@@ -96,11 +106,18 @@ export const supabaseMarkBookAsReading = async (book_id: string) => {
   }
 };
 
-export const supabaseMarkBookAsRead = async (book_id: string) => {
+export const supabaseMarkBookAsRead = async ({
+  book_id,
+  user_id,
+}: {
+  book_id: string;
+  user_id: string;
+}) => {
   const { error } = await supabase
     .from('Reviews')
     .update({ status: 'read' })
-    .eq('book_id', book_id);
+    .eq('book_id', book_id)
+    .eq('user_id', user_id);
 
   if (error) {
     console.error(error);

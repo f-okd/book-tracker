@@ -15,6 +15,7 @@ import { useMarkBookAsToRead } from '../hooks/useMarkBookAsToRead';
 import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
 import Loader from '../../../common/Loader/Loader';
 import { ReactElement } from 'react';
+import { useUser } from '../../auth/hooks/useUser';
 
 interface IBookDetails {
   book: IBook;
@@ -24,7 +25,11 @@ interface IBookDetails {
   Book details card
 */
 const BookDetails = ({ book }: IBookDetails) => {
+  const { user } = useUser();
+  const user_id = user?.id ?? '';
+
   const { isMarkingToRead, markAsToRead } = useMarkBookAsToRead();
+
   const {
     // provide default value as is possibly undefined
     data: review = [],
@@ -36,9 +41,9 @@ const BookDetails = ({ book }: IBookDetails) => {
   });
 
   if (isLoading) return <Loader />;
-
   if (error) return <h1>Error fetching review</h1>;
 
+  /// Try and get the user's review record from db if there is one
   const reviewData = review[0] || [];
 
   /*
@@ -86,7 +91,11 @@ const BookDetails = ({ book }: IBookDetails) => {
             type="ternary"
             disabled={isMarkingToRead === 'pending'}
             onClick={() =>
-              markAsToRead({ book_id: book.id, book_title: book.title })
+              markAsToRead({
+                book_id: book.id,
+                book_title: book.title,
+                user_id,
+              })
             }
           >
             Add to List

@@ -15,12 +15,15 @@ import { getBooksFromDb } from '../../../services/supabase/apiBooks';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../common/Loader/Loader';
 import Error from '../../../common/Error/Error';
+import { useUser } from '../../auth/hooks/useUser';
 
 export type statusType = 'read' | 'reading' | 'dnf' | 'toRead' | '';
 //fetch book status records from db UserBooks table, categorise them, then load them in their respective components
 // fields: id:int8, created_at: timestamptz, user:uuid, bookid:text, status:text (| "read" | "reading" | "toRead" | "dnf"), date_completed:timestampz
 const BookListPage = () => {
   const [statusFilter, setStatusFilter] = useState<statusType>('');
+  const user = useUser().user;
+  const user_id = user?.id ?? ''; //will never be null because you route is protected
 
   const handleSetStatustFilter = (status: statusType) => {
     console.log('changing status to:' + status);
@@ -32,7 +35,7 @@ const BookListPage = () => {
     isLoading,
   } = useQuery({
     queryKey: ['books'],
-    queryFn: getBooksFromDb,
+    queryFn: () => getBooksFromDb(user_id),
   });
 
   console.log(books);
