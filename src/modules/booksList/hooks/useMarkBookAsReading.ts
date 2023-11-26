@@ -16,6 +16,9 @@ export const useMarkBookAsReading = () => {
         queryClient.invalidateQueries({
           queryKey: ['books'],
         });
+        queryClient.invalidateQueries({
+          queryKey: ['currentBook'],
+        });
       },
       onError: () => toast.error('Error marking book as reading'),
     });

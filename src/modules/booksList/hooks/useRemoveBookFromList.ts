@@ -15,6 +15,9 @@ export const useRemoveBookFromList = () => {
       queryClient.invalidateQueries({
         queryKey: ['books'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['currentBook'],
+      });
     },
     onError: () => toast.error('Error removing book'),
   });

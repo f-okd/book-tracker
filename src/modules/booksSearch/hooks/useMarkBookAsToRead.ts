@@ -14,6 +14,9 @@ export const useMarkBookAsToRead = () => {
     onSuccess: () => {
       toast.success('Book successfully added to list');
       queryClient.invalidateQueries({
+        queryKey: ['currentBook'],
+      });
+      queryClient.invalidateQueries({
         queryKey: ['books'],
       });
     },

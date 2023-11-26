@@ -11,12 +11,7 @@ import { IBook } from '../../../utils/types';
 import Loader from '../../../common/Loader/Loader';
 import { useEffect } from 'react';
 import { statusType } from './BookListPage';
-import Button from '../../../common/Button/Button';
-import { useMarkBookAsDropped } from '../hooks/useDropBook';
-import { useMarkBookAsRead } from '../hooks/useMarkBookAsRead';
-import { useMarkBookAsReading } from '../hooks/useMarkBookAsReading';
-import { useRemoveBookFromList } from '../hooks/useRemoveBookFromList';
-import { useUser } from '../../auth/hooks/useUser';
+import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 
 interface IBookPreview {
   book: ReviewsRecord;
@@ -24,19 +19,6 @@ interface IBookPreview {
 const BookPreview = ({ book }: IBookPreview) => {
   const fetcher = useFetcher<IBook>();
   const navigate = useNavigate();
-  const { isDroppingBook, dropBook } = useMarkBookAsDropped();
-  const { isMarkingBookAsRead, markBookAsRead } = useMarkBookAsRead();
-  const { isMarkingBookAsReading, markBookAsReading } = useMarkBookAsReading();
-  const { isRemovingBook, removeBookFromList } = useRemoveBookFromList();
-
-  const user = useUser().user;
-  const user_id = user?.id ?? '';
-
-  const isLoading =
-    isDroppingBook === 'pending' ||
-    isMarkingBookAsRead === 'pending' ||
-    isMarkingBookAsReading === 'pending' ||
-    isRemovingBook === 'pending';
 
   useEffect(() => {
     /* 
@@ -51,50 +33,6 @@ const BookPreview = ({ book }: IBookPreview) => {
     */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book.book_id]);
-
-  /* 
-    todo:// move renderButtons logic out of this file
-    These are the options/operations that will be generated for a book card component,
-      depending on what section of the list you are on
-  */
-  const renderButtons = (isLoading: boolean) => {
-    const bookStatus = book.status as statusType;
-    console.log(bookStatus);
-    switch (bookStatus) {
-      case 'reading':
-        return (
-          <>
-            <Button
-              type="ternary"
-              disabled={isLoading}
-              onClick={() => markBookAsRead({ user_id, book_id: book.book_id })}
-            >
-              Mark read
-            </Button>
-            <Button
-              type="ternary"
-              disabled={isLoading}
-              onClick={() => dropBook(book.book_id)}
-            >
-              Mark dropped
-            </Button>
-          </>
-        );
-      case 'toRead':
-      case 'dnf':
-        return (
-          <Button
-            type="ternary"
-            disabled={isLoading}
-            onClick={() => markBookAsReading(book.book_id)}
-          >
-            Mark reading
-          </Button>
-        );
-      default:
-        return null;
-    }
-  };
 
   /* 
     Error handling: We dont render the component unless the books were (successfully) fetched
@@ -117,14 +55,11 @@ const BookPreview = ({ book }: IBookPreview) => {
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
         <p className="text-xl font-semibold mb-2">{bookData.title}</p>
-        <Button
-          type="ternary"
-          disabled={isLoading}
-          onClick={() => removeBookFromList(book.book_id)}
-        >
-          Remove
-        </Button>
-        {renderButtons(isLoading)}
+        <ButtonOptions
+          bookStatus={book.status as statusType}
+          book_title={book.book_title}
+          book_id={book.book_id}
+        />
       </div>
     );
   }

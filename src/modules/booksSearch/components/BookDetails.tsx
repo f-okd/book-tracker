@@ -9,13 +9,11 @@ SERVES TWO PRIMARY FUNCTIONS
 
 */
 import { useQuery } from '@tanstack/react-query';
-import Button from '../../../common/Button/Button';
 import { IBook } from '../../../utils/types';
-import { useMarkBookAsToRead } from '../hooks/useMarkBookAsToRead';
 import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
 import Loader from '../../../common/Loader/Loader';
-import { ReactElement } from 'react';
-import { useUser } from '../../auth/hooks/useUser';
+import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
+import { statusType } from '../../booksList/components/BookListPage';
 
 interface IBookDetails {
   book: IBook;
@@ -25,11 +23,6 @@ interface IBookDetails {
   Book details card
 */
 const BookDetails = ({ book }: IBookDetails) => {
-  const { user } = useUser();
-  const user_id = user?.id ?? '';
-
-  const { isMarkingToRead, markAsToRead } = useMarkBookAsToRead();
-
   const {
     // provide default value as is possibly undefined
     data: review = [],
@@ -45,64 +38,6 @@ const BookDetails = ({ book }: IBookDetails) => {
 
   /// Try and get the user's review record from db if there is one
   const reviewData = review[0] || [];
-
-  /*
-    Decide buttons/review form to render based on current book status 
-  */
-  const renderButtonOptionsByStatus = (status: string | null): ReactElement => {
-    switch (status) {
-      case 'dnf':
-        return (
-          <>
-            <p>ADD/UPDATE REVIEW FORM</p>
-            <p>REMOVE FROM LIST</p>
-            <p>MARK AS READING</p>
-          </>
-        );
-      case 'read':
-        return (
-          <>
-            <p>ADD/UPDATE REVIEW FORM</p>
-            <p>REMOVE FROM LIST</p>
-          </>
-        );
-      case 'reading':
-        return (
-          <>
-            <p>MARK AS READ</p>
-            <p>MARK AS DROPPED</p>
-            <p>REMOVE FROM LIST</p>
-          </>
-        );
-      case 'toRead':
-        return (
-          <>
-            <p>MARK AS READING</p>
-            <p>REMOVE FROM LIST</p>
-          </>
-        );
-
-      /*
-        If undefined that means there's no record of this book at all in our db so give the option to add to list
-      */
-      default:
-        return (
-          <Button
-            type="ternary"
-            disabled={isMarkingToRead === 'pending'}
-            onClick={() =>
-              markAsToRead({
-                book_id: book.id,
-                book_title: book.title,
-                user_id,
-              })
-            }
-          >
-            Add to List
-          </Button>
-        );
-    }
-  };
 
   return (
     <div
@@ -128,7 +63,11 @@ const BookDetails = ({ book }: IBookDetails) => {
           {book.description}
         </p>
       )}
-      {renderButtonOptionsByStatus(reviewData.status)}
+      <ButtonOptions
+        bookStatus={reviewData.status as statusType}
+        book_id={book.id}
+        book_title={book.title}
+      />
     </div>
   );
 };

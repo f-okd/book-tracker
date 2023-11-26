@@ -15,6 +15,9 @@ export const useMarkBookAsDropped = () => {
       queryClient.invalidateQueries({
         queryKey: ['books'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['currentBook'],
+      });
     },
     onError: () => toast.error('Error dropping book'),
   });

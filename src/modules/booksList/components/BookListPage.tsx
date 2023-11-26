@@ -17,7 +17,13 @@ import Loader from '../../../common/Loader/Loader';
 import Error from '../../../common/Error/Error';
 import { useUser } from '../../auth/hooks/useUser';
 
-export type statusType = 'read' | 'reading' | 'dnf' | 'toRead' | '';
+export type statusType =
+  | 'read'
+  | 'reading'
+  | 'dnf'
+  | 'toRead'
+  | 'reviewed'
+  | '';
 //fetch book status records from db UserBooks table, categorise them, then load them in their respective components
 // fields: id:int8, created_at: timestamptz, user:uuid, bookid:text, status:text (| "read" | "reading" | "toRead" | "dnf"), date_completed:timestampz
 const BookListPage = () => {
