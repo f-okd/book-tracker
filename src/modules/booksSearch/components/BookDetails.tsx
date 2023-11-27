@@ -64,7 +64,10 @@ const BookDetails = ({ book }: IBookDetails) => {
           {book.description}
         </p>
       )}
-      <Review status={reviewData.status} comment={reviewData.comment} />
+      <Review
+        status={reviewData.status as statusType}
+        comment={reviewData.comment}
+      />
       <ButtonOptions
         bookStatus={reviewData.status as statusType}
         book_id={book.id}

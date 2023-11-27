@@ -27,7 +27,7 @@ export type statusType =
 //fetch book status records from db UserBooks table, categorise them, then load them in their respective components
 // fields: id:int8, created_at: timestamptz, user:uuid, bookid:text, status:text (| "read" | "reading" | "toRead" | "dnf"), date_completed:timestampz
 const BookListPage = () => {
-  const [statusFilter, setStatusFilter] = useState<statusType>('');
+  const [statusFilter, setStatusFilter] = useState<statusType>('reading');
   const user = useUser().user;
   const user_id = user?.id ?? ''; //will never be null because you route is protected
 
@@ -56,9 +56,7 @@ const BookListPage = () => {
   ) : (
     <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-top items-center pt-1/3 min-h-screen">
       <Mininav toggleSetFilterBy={handleSetStatustFilter} />
-      {statusFilter && (
-        <BookList statusToFilterBy={statusFilter} books={books} />
-      )}
+      <BookList statusToFilterBy={statusFilter} books={books} />
     </main>
   );
 };
