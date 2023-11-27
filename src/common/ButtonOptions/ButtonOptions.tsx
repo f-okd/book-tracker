@@ -60,14 +60,14 @@ const ButtonOptions = ({
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => dropBook(user_id)} //TODO: TAKE USER_ID
+            onClick={() => dropBook({ book_id, user_id })} //TODO: TAKE USER_ID
           >
             Mark dropped
           </Button>
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => removeBookFromList(book_id)}
+            onClick={() => removeBookFromList({ book_id, user_id })}
           >
             Remove
           </Button>
@@ -81,14 +81,14 @@ const ButtonOptions = ({
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => markBookAsReading(book_id)}
+            onClick={() => markBookAsReading({ book_id, user_id })}
           >
             Mark reading
           </Button>
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => removeBookFromList(book_id)}
+            onClick={() => removeBookFromList({ book_id, user_id })}
           >
             Remove
           </Button>

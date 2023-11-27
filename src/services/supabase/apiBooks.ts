@@ -92,11 +92,19 @@ export const supabaseMarkBookAsToRead = async ({
   }
 };
 
-export const supabaseMarkBookAsReading = async (book_id: string) => {
+interface IUserBook {
+  book_id: string;
+  user_id: string;
+}
+export const supabaseMarkBookAsReading = async ({
+  book_id,
+  user_id,
+}: IUserBook) => {
   const { error } = await supabase
     .from('Reviews')
     .update({ status: 'reading' })
-    .eq('book_id', book_id);
+    .eq('book_id', book_id)
+    .eq('user_id', user_id);
 
   if (error) {
     console.error(error);
@@ -107,10 +115,7 @@ export const supabaseMarkBookAsReading = async (book_id: string) => {
 export const supabaseMarkBookAsRead = async ({
   book_id,
   user_id,
-}: {
-  book_id: string;
-  user_id: string;
-}) => {
+}: IUserBook) => {
   const { error } = await supabase
     .from('Reviews')
     .update({ status: 'read' })
@@ -123,11 +128,15 @@ export const supabaseMarkBookAsRead = async ({
   }
 };
 
-export const supabaseMarkBookAsDropped = async (book_id: string) => {
+export const supabaseMarkBookAsDropped = async ({
+  book_id,
+  user_id,
+}: IUserBook) => {
   const { error } = await supabase
     .from('Reviews')
     .update({ status: 'dnf' })
-    .eq('book_id', book_id);
+    .eq('book_id', book_id)
+    .eq('user_id', user_id);
 
   if (error) {
     console.error(error);
@@ -135,11 +144,15 @@ export const supabaseMarkBookAsDropped = async (book_id: string) => {
   }
 };
 
-export const supabaseRemoveBookFromList = async (book_id: string) => {
+export const supabaseRemoveBookFromList = async ({
+  book_id,
+  user_id,
+}: IUserBook) => {
   const { error } = await supabase
     .from('Reviews')
     .delete()
-    .eq('book_id', book_id);
+    .eq('book_id', book_id)
+    .eq('user_id', user_id);
 
   if (error) {
     console.error(error);
