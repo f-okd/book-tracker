@@ -36,7 +36,7 @@ export const useCategoriseBooksFromDb = (
         categorisedBooks.toRead.push(book);
     }
   });
-  console.log('Categorised books:');
-  console.log(categorisedBooks);
+  // console.log('Categorised books:');
+  // console.log(categorisedBooks);
   return categorisedBooks;
 };

@@ -15,7 +15,6 @@ export const supabaseLogin = async ({ email, password }: ICredentials) => {
 
   if (error) throw new Error(error.message);
 
-  console.log(data);
   return data;
 };
 

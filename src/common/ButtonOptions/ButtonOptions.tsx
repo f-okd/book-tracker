@@ -18,6 +18,8 @@ interface IButtonOptions {
   book_id: string;
   book_title: string;
   comment: string | null;
+  openModal: (comment: string, book_id: string, rating: number) => void;
+  rating: number | null;
 }
 
 const ButtonOptions = ({
@@ -25,6 +27,8 @@ const ButtonOptions = ({
   book_id,
   book_title,
   comment,
+  rating,
+  openModal,
 }: IButtonOptions) => {
   const user = useUser().user;
   const user_id = user?.id ?? '';
@@ -56,7 +60,7 @@ const ButtonOptions = ({
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => dropBook(book_id)}
+            onClick={() => dropBook(user_id)} //TODO: TAKE USER_ID
           >
             Mark dropped
           </Button>
@@ -91,13 +95,12 @@ const ButtonOptions = ({
         </>
       );
     case 'read':
-      console.log(comment);
       if (!comment)
         return (
           <Button
             type="ternary"
             disabled={isLoading}
-            onClick={() => alert('added review for ' + book_id)}
+            onClick={() => openModal(comment ?? '', book_id, rating ?? 0)}
           >
             Add a review
           </Button>
@@ -106,7 +109,7 @@ const ButtonOptions = ({
         <Button
           type="ternary"
           disabled={isLoading}
-          onClick={() => alert('editted ' + book_id + ' review')}
+          onClick={() => openModal(comment ?? '', book_id, rating ?? 0)}
         >
           Edit review
         </Button>

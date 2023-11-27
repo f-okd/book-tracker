@@ -32,7 +32,6 @@ export const getBooksFromDb = async (
   let toRead: ReviewsRecord[] = [];
   let dnf: ReviewsRecord[] = [];
 
-  console.log(user_id);
   try {
     const readingResult = await supabase
       .from('Reviews')
@@ -68,7 +67,6 @@ export const getBooksFromDb = async (
     );
   }
 
-  console.log({ reading, read, toRead, dnf });
   return { reading, read, toRead, dnf };
 };
 
@@ -149,19 +147,23 @@ export const supabaseRemoveBookFromList = async (book_id: string) => {
   }
 };
 
+interface ISupabaseAddReview {
+  book_id: string;
+  rating: number | null;
+  comment: string | null;
+  user_id: string;
+}
 export const supabaseAddReview = async ({
   book_id,
   rating,
   comment,
-}: {
-  book_id: string;
-  rating: number;
-  comment: string;
-}) => {
+  user_id,
+}: ISupabaseAddReview) => {
   const { error } = await supabase
     .from('Reviews')
-    .update({ status: 'dnf', rating, comment })
-    .eq('book_id', book_id);
+    .update({ rating, comment })
+    .eq('book_id', book_id)
+    .eq('user_id', user_id);
 
   if (error) {
     console.error(error);

@@ -25,7 +25,7 @@ const Book = () => {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  console.log(params.bookId);
+  // console.log(params.bookId);
   const book: IBook = await getBookFromGoogle(params.bookId ?? '');
   return book;
 };

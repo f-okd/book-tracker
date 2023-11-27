@@ -8,6 +8,7 @@ SERVES TWO PRIMARY FUNCTIONS
       it will be undefined, otherwise we proceed as needed
 
 */
+import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { IBook } from '../../../utils/types';
 import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
@@ -15,6 +16,7 @@ import Loader from '../../../common/Loader/Loader';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { statusType } from '../../booksList/components/BookListPage';
 import Review from '../../booksList/components/Review';
+import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
 
 interface IBookDetails {
   book: IBook;
@@ -33,6 +35,8 @@ const BookDetails = ({ book }: IBookDetails) => {
     queryKey: ['currentBook', book.id],
     queryFn: () => supabaseGetBookFromDb(book.id),
   });
+
+  const { openModalWithReview } = useContext(ModalContext);
 
   if (isLoading) return <Loader />;
   if (error) return <h1>Error fetching review</h1>;
@@ -73,6 +77,8 @@ const BookDetails = ({ book }: IBookDetails) => {
         book_id={book.id}
         book_title={book.title}
         comment={reviewData.comment}
+        openModal={openModalWithReview}
+        rating={reviewData.rating}
       />
     </div>
   );

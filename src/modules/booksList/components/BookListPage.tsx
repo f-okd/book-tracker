@@ -44,7 +44,7 @@ const BookListPage = () => {
     queryFn: () => getBooksFromDb(user_id),
   });
 
-  console.log(books);
+  // console.log(books);
 
   if (error)
     return (

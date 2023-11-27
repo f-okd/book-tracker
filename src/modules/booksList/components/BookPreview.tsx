@@ -9,9 +9,10 @@ import { useFetcher, useNavigate } from 'react-router-dom';
 import { ReviewsRecord } from '../../../services/supabase/apiBooks';
 import { IBook } from '../../../utils/types';
 import Loader from '../../../common/Loader/Loader';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { statusType } from './BookListPage';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
+import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
 
 interface IBookPreview {
   book: ReviewsRecord;
@@ -19,6 +20,8 @@ interface IBookPreview {
 const BookPreview = ({ book }: IBookPreview) => {
   const fetcher = useFetcher<IBook>();
   const navigate = useNavigate();
+
+  const { openModalWithReview } = useContext(ModalContext);
 
   useEffect(() => {
     /* 
@@ -61,6 +64,8 @@ const BookPreview = ({ book }: IBookPreview) => {
           book_title={book.book_title}
           book_id={book.book_id}
           comment={book.comment}
+          rating={book.rating}
+          openModal={openModalWithReview}
         />
       </div>
     );
