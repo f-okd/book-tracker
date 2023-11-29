@@ -326,6 +326,15 @@ status = 200
 - With vercel just create an account + link it to your github
 - Select your repo from the list and deploy
 - IMPORTANT: remember to upload environment variables!
+- Add vercel config file (vercel.json) in the root of your project otherwise app may crash when you refresh:
+
+```
+<!-- vercel.json -->
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+}
+```
+
 - Will redeploy every time a change is detected
 
 ### What would I change?

@@ -59,7 +59,7 @@ const BookPreview = ({ book }: IBookPreview) => {
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
-        <p className="text-xl font-semibold mb-2">{bookData.title}</p>
+        <p className="text-l font-semibold mb-2">{bookData.title}</p>
         <RenderStars rating={book.rating ?? 0} />
         <ButtonOptions
           bookStatus={book.status as statusType}
