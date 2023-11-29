@@ -74,3 +74,11 @@ export const supabaseUpdateCurrentUser = async ({
 
   return data;
 };
+
+export const supabaseSignInWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  });
+  if (error) throw new Error(error.message);
+  return data;
+};

@@ -32,7 +32,6 @@ const BookListPage = () => {
   const user_id = user?.id ?? ''; //will never be null because you route is protected
 
   const handleSetStatustFilter = (status: statusType) => {
-    console.log('changing status to:' + status);
     setStatusFilter(status);
   };
   const {

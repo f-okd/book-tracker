@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useUser } from '../auth/hooks/useUser';
 import { useUpdateUser } from '../auth/hooks/useUpdateUser';
+import toast from 'react-hot-toast';
 
 const UpdateUsernameForm = () => {
   const user = useUser().user;
@@ -12,6 +13,11 @@ const UpdateUsernameForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!username) return;
+    if (username.length > 16) {
+      toast.error('Username is too long');
+      return;
+    }
+
     updateUser({ username });
   };
 
@@ -30,7 +36,7 @@ const UpdateUsernameForm = () => {
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-ternary leading-tight focus:outline-none focus:shadow-outline"
-          id="username"
+          id="email"
           type="text"
           value={email}
           disabled={true}

@@ -68,6 +68,11 @@ const BookDetails = ({ book }: IBookDetails) => {
           {book.description}
         </p>
       )}
+      {reviewData.status && (
+        <p className="text-sm mb-4 sm:text-base md:text-xl text-ternary italic">
+          Status: {reviewData.status}
+        </p>
+      )}
       <Review
         status={reviewData.status as statusType}
         comment={reviewData.comment}

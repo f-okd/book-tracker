@@ -18,10 +18,6 @@ const ReviewModal = () => {
     setReviewInputValue(comment);
   }, [comment, rating]);
 
-  console.log(
-    `ReviewModal.tsx| Comment:${reviewData.comment}, Rating:${reviewData.rating}`,
-  );
-
   const { addReview, isAddingReview } = useAddReview();
   const { user } = useUser();
   const user_id = user?.id ?? '';

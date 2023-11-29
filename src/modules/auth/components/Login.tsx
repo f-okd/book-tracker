@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { Link } from 'react-router-dom';
+import Button from '../../../common/Button/Button';
+import { supabaseSignInWithGoogle } from '../../../services/supabase/apiAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('b@b.com');
@@ -79,8 +81,16 @@ const Login = () => {
         to="/register"
         className="text-xl text-semibold hover:font-bold text-ternary"
       >
-        Sign Up
+        Sign Up (Email)
       </Link>
+      <div>
+        <p className="text-xl pt-4 text-semibold hover:font-bold text-ternary">
+          Alternatively...
+        </p>
+        <Button type="ternary" onClick={supabaseSignInWithGoogle}>
+          Sign in with Google
+        </Button>
+      </div>
     </div>
   );
 };
