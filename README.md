@@ -325,6 +325,7 @@ status = 200
 - Can be done with netlify/vercel
 - With vercel just create an account + link it to your github
 - Select your repo from the list and deploy
+- IMPORTANT: remember to upload environment variables!
 - Will redeploy every time a change is detected
 
 ### What would I change?
