@@ -1,16 +1,18 @@
+import RenderStars from '../utils/RenderStars';
 import { statusType } from './BookListPage';
 
-const Review = ({
-  comment,
-  status,
-}: {
+interface IReview {
   comment: string | null;
   status: statusType;
-}) => {
+  rating: number | null;
+}
+
+const Review = ({ comment, status, rating }: IReview) => {
   if (status != 'read') return null;
   return (
     <div>
       <p className="text-2xl text-ternary ">Review:</p>
+      {rating && <RenderStars rating={rating} />}
       {comment && <p className="italic">{comment}</p>}
       {!comment && (
         <p className="italic">

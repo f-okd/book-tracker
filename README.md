@@ -12,20 +12,31 @@
 - React-router: Used to manage client side routing, and enables SPA feature of navigating between pages without reloading.
 - [Tailwind](https://tailwindcss.com/docs/guides/vite): Styling, MUI was also a good choice and would probably be faster for development but I prefer the increased control over component styling provided with TW
 - Axios: Fetching data
-- Toaster
+- tanstack/react-query.v5.8.2
+- tanstack/react-query-devtools.v5.8.2
+- axios.v1.6.1
+- react.v18.2.0
+- react-dom.v18.2.0
+- react-hook-form.v7.48.2
+- react-hot-toast.v2.4.1
+- react-router-dom.v6.18.0
+- react-spinners.v0.13.8"
+
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 - [Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/reactjs): Backend-as-a-service (BaaS)
 - [Book Logo](https://www.svgrepo.com/svg/513520/book-closed)
+
+"@supabase/supabase-js": "^2.38.4",
 
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
 ### Backend
 
-- I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly. (seriously it's insane)
+- I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
 - The google books API is so thoroughly documented with more than enough features to complete this project, which meant that the complexity of the database was very minimal.
   - i.e. the only information I needed store about a book was it's ID. Then we can use the google books api to fetch any relevant information about it
-- We only have 1 supabase table for reviews because Supabase manages users + authentication for us
+- We only have 1 supabase table for reviews because Supabase manages users + authentication for us, one downside is that it's not normalised at all, so may cause inefficient lookups.
 
 Reviews Table:
 

@@ -1,7 +1,5 @@
 /*
-
 This renders the button options (Remove from list, mark as read, )
-
 */
 
 import { useUser } from '../../modules/auth/hooks/useUser';
@@ -95,7 +93,7 @@ const ButtonOptions = ({
         </>
       );
     case 'read':
-      if (!comment)
+      if (!comment || !rating)
         return (
           <Button
             type="ternary"

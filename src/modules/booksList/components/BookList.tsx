@@ -34,9 +34,11 @@ const BookList = ({ statusToFilterBy = 'toRead', books }: IBookList) => {
     <>
       <h1 className="text-3xl font-bold uppercase"> {statusToFilterBy}</h1>
       <div className="flex flex-row">
-        {returnDataSetByFilter(statusToFilterBy)?.map((book) => (
-          <BookPreview key={book.book_id} book={book} />
-        ))}
+        {returnDataSetByFilter(statusToFilterBy)
+          ?.sort(function (a, b) {
+            return (b.rating ?? 0) - (a.rating ?? 0);
+          })
+          .map((book) => <BookPreview key={book.book_id} book={book} />)}
       </div>
     </>
   );

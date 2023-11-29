@@ -1,3 +1,4 @@
+import { ReviewsRecord } from '../services/supabase/apiBooks';
 import { IBook } from './types';
 
 // response type: https://developers.google.com/books/docs/v1/reference/volumes ---> not defining that lol

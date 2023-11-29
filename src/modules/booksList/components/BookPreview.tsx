@@ -13,6 +13,7 @@ import { useContext, useEffect } from 'react';
 import { statusType } from './BookListPage';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
+import RenderStars from '../utils/RenderStars';
 
 interface IBookPreview {
   book: ReviewsRecord;
@@ -59,6 +60,7 @@ const BookPreview = ({ book }: IBookPreview) => {
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
         <p className="text-xl font-semibold mb-2">{bookData.title}</p>
+        <RenderStars rating={book.rating ?? 0} />
         <ButtonOptions
           bookStatus={book.status as statusType}
           book_title={book.book_title}

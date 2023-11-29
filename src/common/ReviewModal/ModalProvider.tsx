@@ -32,9 +32,9 @@ export const ModalContext = createContext<ModalContextType>({
 export const ModalProvider = ({ children }: PropsWithChildren) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState<IModalReviewData>({
-    comment: '',
+    comment: null,
     book_id: '',
-    rating: 0,
+    rating: null,
   });
 
   const openModalWithReview = (

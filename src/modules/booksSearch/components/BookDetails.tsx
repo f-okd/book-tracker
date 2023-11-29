@@ -71,6 +71,7 @@ const BookDetails = ({ book }: IBookDetails) => {
       <Review
         status={reviewData.status as statusType}
         comment={reviewData.comment}
+        rating={reviewData.rating}
       />
       <ButtonOptions
         bookStatus={reviewData.status as statusType}
