@@ -322,6 +322,11 @@ status = 200
 
 ### CI with github
 
+- Can be done with netlify/vercel
+- With vercel just create an account + link it to your github
+- Select your repo from the list and deploy
+- Will redeploy every time a change is detected
+
 ### What would I change?
 
 - Store user + user books state in redux!!
