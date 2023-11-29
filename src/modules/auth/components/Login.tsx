@@ -5,8 +5,8 @@ import Button from '../../../common/Button/Button';
 import { supabaseSignInWithGoogle } from '../../../services/supabase/apiAuth';
 
 const Login = () => {
-  const [email, setEmail] = useState('b@b.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { login, isLoggingIn } = useLogin();
 
   const handleLogin = (e: React.FormEvent) => {

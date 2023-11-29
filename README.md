@@ -1,6 +1,18 @@
 # BookTracker
 
 - Yet to come up with a name
+- Made an attempt to document how technologies were used so you can use them also or just to understand the flow of the application
+
+### Table of Contents
+
+1. [Libraries + Technologies](#libraries)
+2. [Backend](#backend)
+3. [Using google books Api](#using-google-books-api)
+4. [Working with supabase](#working-with-supbase)
+5. [React Query](#react-query)
+6. [React router](#react-router)
+7. [Google OAuth provider](#implementing-google-oauth-provider)
+8. [Deployment](#deployment)
 
 #### Libraries + Technologies
 
@@ -31,6 +43,7 @@
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
+<a name="backend"/>
 ### Backend
 
 - I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
@@ -207,13 +220,110 @@ export default App;
 ### React router
 
 - With react-router we can use loaders for "render as you fetch" functionality, so that means we can assign data to be fetched from a particular path/route
+
   - We can also fetch data from that route without visiting it using fetchers, thereby associating specific routes with specific data
-  - i.e. in this project /mybooks/read loader will call the supabase api function to retrieve records of all read books
+  - When the user clicks on a search result in (SearchResultItem.tsx), we pass state to the URL and it navigates to /book/:id
+  - The loader function defined below the functional componenent in BookDetailsPage.tsx fetches+returns the book details of the whom's Id we have passed as a search param using googleBooksApi
 
-notes:
+  ```
+  <!-- src\modules\booksSearch\components\BookDetailsPage.tsx -->
 
+  export const loader = async ({ params }: LoaderFunctionArgs) => {
+    // console.log(params.bookId);
+    const book: IBook = await getBookFromGoogle(params.bookId ?? '');
+    return book;
+  };
+
+  export default Book;
+  ```
+
+  - In the main component we access this as such:
+
+  ```
+  const book: IBook = useLoaderData() as IBook;
+  ```
+
+  - We can also use a fetcher functuon to fetch the value returned by a loader at a specific route
+  - e.g. In BookPreview.tsx (the book cards in the book list), we want to fetch book details again without typing it all again
+
+  ```
+  const BookPreview = ({ book }: IBookPreview) => {
+    const fetcher = useFetcher<IBook>();
+
+    useEffect(() => {
+      fetcher.load(`/book/${book.book_id}`);
+    }, [book.book_id]);
+
+    if (fetcher.state === 'loading') return <Loader />;
+    if (fetcher.state === 'idle' && !fetcher.data)
+      return <div>No data found</div>;
+
+    if (fetcher.data) {
+      const bookData = fetcher.data;
+      return (
+        <p>{bookData.title}</p>
+      )
+    }
+  }
+  ```
+
+### Implementing Google OAuth Provider:
+
+[Supabase Docs](https://supabase.com/docs/learn/auth-deep-dive/auth-google-oauth)
+[Accompanying video](https://www.youtube.com/watch?v=_XM9ziOzWk4)
 state:
 
-- fetch userbooks in redux straight awya
-  user
-  books - booklist - book details page
+- Enable google provider on Supabase Auth settings
+- Create new google project on google console
+- Configure OAuth consent screen for external user type, where you can also set redirect li
+- Generate OAuth client ID credentials
+  - Add authorsed redirect URI: https://<your-ref>.supabase.co/auth/v1/callback
+  - ^ The exact link can be found under the google provider details in supabase auth settings https://supabase.com/dashboard/project/<your-ref>/auth/providers
+- Add client ID + secret to supabase
+- You can now create a button that calls the supabase.auth.signIn function with google provider:
+
+```
+<src\modules\auth\components\Login.tsx>
+...
+<Button type="ternary" onClick={supabaseSignInWithGoogle}>
+  Sign in with Google
+</Button>
+<!-- src\services\supabase\apiAuth.ts -->
+...
+export const supabaseSignInWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  });
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+```
+
+### Deployment
+
+- build application, which creates a dist folder
+
+```
+npm run build
+```
+
+- create netlify.toml file in dist + main folder and enter:
+
+```
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+```
+
+- Login/signup to netlify
+- upload using netlify drop + configure site settings
+
+### CI with github
+
+### What would I change?
+
+- Store user + user books state in redux!!
+- Normalise database!!
+  - This would have meant we have to work with less null values and bandaid fixes/workarounds
