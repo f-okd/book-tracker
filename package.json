@@ -1,6 +1,5 @@
 {
   "name": "book-tracker",
-  "homepage": "https://book-tracker-inky.vercel.app/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
