@@ -16,7 +16,7 @@ describe('App', () => {
       }),
     ).toHaveTextContent('Hello World');
   });
-  
+
   it('renders notfound on an invalid path', () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ['invalid/route'],
