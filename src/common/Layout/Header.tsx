@@ -11,7 +11,7 @@ const Header = () => {
       <header className="bg-secondary">
         <nav className="flex flex-wrap items-center justify-between border-b border-stone-200 px-4 py-3 sm:px-6">
           <Link to="/" className="text-lg uppercase font-semibold">
-            <img src="book.svg" width={35}></img>
+            <img src="/book.svg" width={35}></img>
           </Link>
 
           <button
