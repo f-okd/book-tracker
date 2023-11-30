@@ -43,7 +43,7 @@
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
-<a name="backend"/>
+
 ### Backend
 
 - I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
