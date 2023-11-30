@@ -44,13 +44,14 @@
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
-<a name="backend"/>
+
 ### Backend
 
 - I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
 - The google books API is so thoroughly documented with more than enough features to complete this project, which meant that the complexity of the database was very minimal.
   - i.e. the only information I needed store about a book was it's ID. Then we can use the google books api to fetch any relevant information about it
-- We only have 1 supabase table for reviews because Supabase manages users + authentication for us, one downside is that it's not normalised at all, so may cause inefficient lookups.
+- We only have 1 supabase table for reviews because Supabase manages users + authentication for us, one downside is that it's not normalised at all, so may cause inefficient lookups. And an excessive use of null values throughout
+    - by avoiding complexity at the backend level I ended up just moving it to the frontend
 
 Reviews Table:
 
