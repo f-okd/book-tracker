@@ -17,7 +17,7 @@ import BookDetails from './BookDetails';
 const Book = () => {
   const book: IBook = useLoaderData() as IBook;
   return (
-    <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-center items-center pt-1/3 min-h-screen">
+    <main className="pt-1/3 flex min-h-screen flex-1 flex-col items-center justify-center border-4 border-solid border-ternary bg-primary">
       <BookDetails book={book} />
     </main>
   );

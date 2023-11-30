@@ -6,13 +6,13 @@ const Settings = () => {
   const user = useUser().user;
   const currentUsername = user?.user_metadata?.username ?? '';
   return (
-    <main className="bg-primary border-solid border-4 border-ternary flex-1 flex flex-col justify-center items-center pt-1/3 min-h-screen">
-      <p className="text-ternary text-3xl font-[600]">
+    <main className="pt-1/3 flex min-h-screen flex-1 flex-col items-center justify-center border-4 border-solid border-ternary bg-primary">
+      <p className="text-3xl font-[600] text-ternary">
         Hello {currentUsername}
       </p>
-      <p className="text-l text-ternary font-semibold">Update user data</p>
+      <p className="text-l font-semibold text-ternary">Update user data</p>
       <UpdateUsernameForm />
-      <p className="text-l text-ternary font-semibold">Update password</p>
+      <p className="text-l font-semibold text-ternary">Update password</p>
 
       <UpdatePasswordForm />
     </main>

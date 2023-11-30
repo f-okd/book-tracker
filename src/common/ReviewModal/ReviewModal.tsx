@@ -44,12 +44,12 @@ const ReviewModal = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-      <div className="bg-primary p-5 rounded-3xl shadow-xl w-[400px] h-[560px]">
+    <div className="fixed inset-0 flex h-full w-full items-center justify-center overflow-y-auto bg-gray bg-opacity-50">
+      <div className="h-[560px] w-[400px] rounded-3xl bg-primary p-5 shadow-xl">
         <form onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}>
           <div className="mb-1">
             <label
-              className="block text-ternary text-sm font-bold mb-2"
+              className="mb-2 block text-sm font-bold text-ternary"
               htmlFor="input"
             >
               Your thoughts...
@@ -61,7 +61,7 @@ const ReviewModal = () => {
             <textarea
               value={reviewInputValue ?? ''}
               onChange={(e) => setReviewInputValue(e.currentTarget.value)}
-              className="shadow appearance-none border rounded-3xl w-full h-[400px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="text-gray-700 focus:shadow-outline h-[400px] w-full appearance-none rounded-3xl border px-3 py-2 leading-tight shadow focus:outline-none"
               id="input"
             >
               {reviewInputValue}

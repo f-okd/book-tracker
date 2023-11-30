@@ -51,15 +51,15 @@ const BookPreview = ({ book }: IBookPreview) => {
     return (
       <div
         id="bookCard"
-        className="flex flex-col bg-secondary p-2 m-2 w-[220px] h-[420px] rounded-3xl border border-ternary hover:cursor-pointer"
+        className="m-2 flex h-[420px] w-[220px] flex-col rounded-3xl border border-ternary bg-secondary p-2 hover:cursor-pointer"
       >
         <img
-          className="self-center border w-[180px] border-ternary rounded-xl mb-1 h-[240px]"
+          className="mb-1 h-[240px] w-[180px] self-center rounded-xl border border-ternary"
           src={bookData.thumbnail ?? 'bookNotFound.png'}
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
-        <p className="text-l font-semibold mb-2">{bookData.title}</p>
+        <p className="text-l mb-2 font-semibold">{bookData.title}</p>
         <RenderStars rating={book.rating ?? 0} />
         <ButtonOptions
           bookStatus={book.status as statusType}

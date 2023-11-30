@@ -47,29 +47,29 @@ const BookDetails = ({ book }: IBookDetails) => {
   return (
     <div
       id="bookCard"
-      className="flex flex-col bg-secondary p-5 w-[90%] md:w-[60%] rounded-3xl border border-ternary"
+      className="flex w-[90%] flex-col rounded-3xl border border-ternary bg-secondary p-5 md:w-[60%]"
     >
-      <h2 className="text-3xl font-semibold mb-2">{book.title}</h2>
+      <h2 className="mb-2 text-3xl font-semibold">{book.title}</h2>
 
-      <p className="text-sm italic mb-4">
+      <p className="mb-4 text-sm italic">
         {book.authors && book.authors.length > 0
           ? book.authors.join(', ')
           : 'No authors listed'}
       </p>
 
       <img
-        className="self-center border border-ternary rounded-xl mb-4 w-1/3 md:w-1/4"
+        className="mb-4 w-1/3 self-center rounded-xl border border-ternary md:w-1/4"
         src={book.thumbnail ?? 'bookNotFound.png'}
         alt={`Cover of the book: ${book.title}`}
       />
 
       {book.description && (
-        <p className="text-sm mb-4 sm:text-base md:text-lg">
+        <p className="mb-4 text-sm sm:text-base md:text-lg">
           {book.description}
         </p>
       )}
       {reviewData.status && (
-        <p className="text-sm mb-4 sm:text-base md:text-xl text-ternary italic">
+        <p className="mb-4 text-sm italic text-ternary sm:text-base md:text-xl">
           Status: {reviewData.status}
         </p>
       )}

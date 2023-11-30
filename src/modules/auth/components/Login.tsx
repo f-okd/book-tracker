@@ -26,21 +26,21 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-primary">
-      <p className="font-bold text-3xl pb-4 text-ternary">Login</p>
+    <div className="flex h-screen flex-col items-center justify-center bg-primary">
+      <p className="pb-4 text-3xl font-bold text-ternary">Login</p>
       <form
         onSubmit={handleLogin}
-        className="bg-secondary shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="mb-4 rounded bg-secondary px-8 pb-8 pt-6 shadow-md"
       >
         <div className="mb-4">
           <label
-            className="block text-ternary sm:text-xl md:text-2xl font-semibold mb-2"
+            className="mb-2 block font-semibold text-ternary sm:text-xl md:text-2xl"
             htmlFor="email"
           >
             Email
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-ternary leading-tight focus:outline-none focus:shadow-outline"
+            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="email"
             type="text"
             placeholder="Email"
@@ -51,13 +51,13 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-ternary sm:text-xl md:text-2xl font-semibold mb-2"
+            className="mb-2 block font-semibold text-ternary sm:text-xl md:text-2xl"
             htmlFor="password"
           >
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-ternary mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="password"
             type="password"
             placeholder="******************"
@@ -69,7 +69,7 @@ const Login = () => {
         <div className="flex items-center justify-between">
           <button
             disabled={isLoggingIn}
-            className="bg-ternary hover:bg-blue-700 text-primary font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="hover:bg-blue-700 focus:shadow-outline rounded bg-ternary px-4 py-2 font-semibold text-primary focus:outline-none"
             type="submit"
           >
             {!isLoggingIn ? 'Sign In' : '....logging in'}
@@ -79,12 +79,12 @@ const Login = () => {
 
       <Link
         to="/register"
-        className="text-xl text-semibold hover:font-bold text-ternary"
+        className="text-semibold text-xl text-ternary hover:font-bold"
       >
         Sign Up (Email)
       </Link>
       <div>
-        <p className="text-xl pt-4 text-semibold hover:font-bold text-ternary">
+        <p className="text-semibold pt-4 text-xl text-ternary hover:font-bold">
           Alternatively...
         </p>
         <Button type="ternary" onClick={supabaseSignInWithGoogle}>

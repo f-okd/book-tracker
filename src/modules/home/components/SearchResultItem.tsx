@@ -13,7 +13,7 @@ const SearchResultItem = ({ book }: ISearchResultItem) => {
   return (
     <div
       key={book.id}
-      className="flex flex-row items-center border solid p-1 mb-1 mx-4 rounded-xl bg-secondary"
+      className="solid mx-4 mb-1 flex flex-row items-center rounded-xl border bg-secondary p-1"
       id="bookPreview"
     >
       <img

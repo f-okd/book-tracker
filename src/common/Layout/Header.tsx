@@ -9,13 +9,13 @@ const Header = () => {
   return (
     <section className="bg-ternary px-1 pt-1">
       <header className="bg-secondary">
-        <nav className="flex flex-wrap items-center justify-between border-b border-stone-200 px-4 py-3 sm:px-6">
-          <Link to="/" className="text-lg uppercase font-semibold">
+        <nav className="border-stone-200 flex flex-wrap items-center justify-between border-b px-4 py-3 sm:px-6">
+          <Link to="/" className="text-lg font-semibold uppercase">
             <img src="/book.svg" width={35}></img>
           </Link>
 
           <button
-            className="sm:hidden text-3xl"
+            className="text-3xl sm:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             &#9776;
@@ -34,7 +34,7 @@ const Header = () => {
             </Button>
           </div>
 
-          <div className="hidden items-center justify-right sm:ml-[4rem] sm:flex ">
+          <div className="justify-right hidden items-center sm:ml-[4rem] sm:flex ">
             <Button to="/mybooks" type="ternary">
               My list
             </Button>

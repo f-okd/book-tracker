@@ -24,18 +24,18 @@ const UpdateUsernameForm = () => {
   const [username, setUsername] = useState(currentUsername);
   return (
     <form
-      className="bg-secondary shadow-md rounded px-8 py-3 my-3"
+      className="my-3 rounded bg-secondary px-8 py-3 shadow-md"
       onSubmit={handleSubmit}
     >
       <div className="mb-4">
         <label
-          className={`block sm:text-l font-semibold mb-2 `}
+          className={`sm:text-l mb-2 block font-semibold `}
           htmlFor="username"
         >
           Email
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-ternary leading-tight focus:outline-none focus:shadow-outline"
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
           id="email"
           type="text"
           value={email}
@@ -44,13 +44,13 @@ const UpdateUsernameForm = () => {
       </div>
       <div className="mb-4">
         <label
-          className={`block sm:text-l font-semibold mb-2 `}
+          className={`sm:text-l mb-2 block font-semibold `}
           htmlFor="username"
         >
           Username
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-ternary leading-tight focus:outline-none focus:shadow-outline"
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
           id="username"
           type="text"
           placeholder="Username"
@@ -61,7 +61,7 @@ const UpdateUsernameForm = () => {
       </div>
       <div className="flex items-center justify-between">
         <button
-          className="bg-ternary hover:bg-blue-700 text-primary font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="hover:bg-blue-700 focus:shadow-outline rounded bg-ternary px-4 py-2 font-semibold text-primary focus:outline-none"
           type="submit"
           disabled={isUpdatingUser}
         >

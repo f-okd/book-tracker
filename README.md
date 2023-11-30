@@ -24,6 +24,7 @@
 - React-router: Used to manage client side routing, and enables SPA feature of navigating between pages without reloading.
 - [Husky](https://www.youtube.com/watch?v=tmTajqVgkwI): Help standardise code and make it easier to facilitate open source contribution
 - [Tailwind](https://tailwindcss.com/docs/guides/vite): Styling, MUI was also a good choice and would probably be faster for development but I prefer the increased control over component styling provided with TW
+  - [Prettier-plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
 - Axios: Fetching data
 - tanstack/react-query.v5.8.2
 - tanstack/react-query-devtools.v5.8.2
@@ -44,14 +45,13 @@
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
-
 ### Backend
 
 - I chose to use Supabase BaaS because I am familiar with relational DBs in the form of MySQL, and the supabase APIs and documentation make it easy to get a live product out very quickly.
 - The google books API is so thoroughly documented with more than enough features to complete this project, which meant that the complexity of the database was very minimal.
   - i.e. the only information I needed store about a book was it's ID. Then we can use the google books api to fetch any relevant information about it
 - We only have 1 supabase table for reviews because Supabase manages users + authentication for us, one downside is that it's not normalised at all, so may cause inefficient lookups. And an excessive use of null values throughout
-    - by avoiding complexity at the backend level I ended up just moving it to the frontend
+  - by avoiding complexity at the backend level I ended up just moving it to the frontend
 
 Reviews Table:
 

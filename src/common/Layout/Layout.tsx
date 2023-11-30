@@ -10,7 +10,7 @@ const Layout = () => {
 
   return !isLoading ? (
     <ModalProvider>
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-1 flex-col">
         <Header />
         <Outlet />
         <ReviewModal />

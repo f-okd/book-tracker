@@ -9,7 +9,7 @@ export const Star = ({ onRate, full, onHoverIn, onHoverOut }: IStar) => {
   return (
     <span
       role="button"
-      className="w-[40px] h-[40px] block cursor-pointer"
+      className="block h-[40px] w-[40px] cursor-pointer"
       onClick={onRate}
       onMouseEnter={onHoverIn}
       onMouseLeave={onHoverOut}
