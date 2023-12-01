@@ -38,7 +38,7 @@ const BookList = ({ statusToFilterBy = 'toRead', books }: IBookList) => {
   return (
     <>
       <h1 className="text-3xl font-bold uppercase"> {statusToFilterBy}</h1>
-      <div className="overflow-none flex flex-row">
+      <div className="flex flex-row flex-wrap justify-center p-5">
         {returnDataSetByFilter(statusToFilterBy).length > 0 ? (
           returnDataSetByFilter(statusToFilterBy)
             ?.sort(function (a, b) {

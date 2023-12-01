@@ -50,10 +50,7 @@ const BookPreview = ({ book }: IBookPreview) => {
   if (fetcher.data) {
     const bookData = fetcher.data;
     return (
-      <div
-        id="bookCard"
-        className="m-2 flex h-[420px] w-[220px] flex-col rounded-3xl border border-ternary bg-secondary p-2 hover:cursor-pointer"
-      >
+      <div className="m-2 flex h-[420px] w-[220px] flex-col rounded-3xl border border-ternary bg-secondary p-2 hover:cursor-pointer">
         <img
           className="mb-1 h-[240px] w-[180px] self-center rounded-xl border border-ternary"
           src={bookData.thumbnail ?? 'bookNotFound.png'}
