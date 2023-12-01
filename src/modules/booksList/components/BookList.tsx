@@ -16,7 +16,12 @@ interface IBookList {
 }
 
 const BookList = ({ statusToFilterBy = 'toRead', books }: IBookList) => {
-  if (!books) return <h1>No books in list</h1>;
+  if (!books)
+    return (
+      <p className="mt-10 text-3xl text-ternary">
+        You haven't added any books to your list 🥲😢🥹😭😿
+      </p>
+    );
 
   const returnDataSetByFilter = (status: statusType) => {
     switch (status) {
@@ -33,12 +38,18 @@ const BookList = ({ statusToFilterBy = 'toRead', books }: IBookList) => {
   return (
     <>
       <h1 className="text-3xl font-bold uppercase"> {statusToFilterBy}</h1>
-      <div className="flex flex-row">
-        {returnDataSetByFilter(statusToFilterBy)
-          ?.sort(function (a, b) {
-            return (b.rating ?? 0) - (a.rating ?? 0);
-          })
-          .map((book) => <BookPreview key={book.book_id} book={book} />)}
+      <div className="overflow-none flex flex-row">
+        {returnDataSetByFilter(statusToFilterBy).length > 0 ? (
+          returnDataSetByFilter(statusToFilterBy)
+            ?.sort(function (a, b) {
+              return (b.rating ?? 0) - (a.rating ?? 0);
+            })
+            .map((book) => <BookPreview key={book.book_id} book={book} />)
+        ) : (
+          <p className="mt-10 text-3xl text-ternary">
+            Nothing to see here yet 😎🚀💎⭐
+          </p>
+        )}
       </div>
     </>
   );

@@ -11,7 +11,8 @@ const Header = () => {
       <header className="bg-secondary">
         <nav className="border-stone-200 flex flex-wrap items-center justify-between border-b px-4 py-3 sm:px-6">
           <Link to="/" className="text-lg font-semibold uppercase">
-            <img src="/book.svg" width={35}></img>
+            <img src="/book.svg" width={35} />
+            <p>Home</p>
           </Link>
 
           <button
@@ -27,7 +28,7 @@ const Header = () => {
             } sm:hidden`}
           >
             <Button to="/mybooks" type="ternary">
-              Browse books
+              My List
             </Button>
             <Button to="/settings" type="ternary">
               Settings
