@@ -1,11 +1,11 @@
 const RenderStars = ({ rating }: { rating: number }) => {
   if (rating == 0) return <></>;
   return (
-    <p>
+    <span>
       {Array.from(Array(rating), () => {
-        return <>⭐</>;
+        return '⭐';
       })}
-    </p>
+    </span>
   );
 };
 export default RenderStars;

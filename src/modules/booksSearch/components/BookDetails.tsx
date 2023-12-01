@@ -17,6 +17,7 @@ import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { statusType } from '../../booksList/components/BookListPage';
 import Review from '../../booksList/components/Review';
 import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
+import parse from 'html-react-parser';
 
 interface IBookDetails {
   book: IBook;
@@ -47,11 +48,11 @@ const BookDetails = ({ book }: IBookDetails) => {
   return (
     <div
       id="bookCard"
-      className="flex w-[90%] flex-col rounded-3xl border border-ternary bg-secondary p-5 md:w-[60%]"
+      className="mt-4 flex w-[90%] flex-col rounded-3xl border border-ternary bg-secondary p-5 md:w-[60%]"
     >
       <h2 className="mb-2 text-3xl font-semibold">{book.title}</h2>
 
-      <p className="mb-4 text-sm italic">
+      <p className="mb-4 text-sm italic md:text-xl">
         {book.authors && book.authors.length > 0
           ? book.authors.join(', ')
           : 'No authors listed'}
@@ -64,9 +65,9 @@ const BookDetails = ({ book }: IBookDetails) => {
       />
 
       {book.description && (
-        <p className="mb-4 text-sm sm:text-base md:text-lg">
-          {book.description}
-        </p>
+        <div className="mb-4 text-sm sm:text-base md:text-lg">
+          {parse(book.description)}
+        </div>
       )}
       {reviewData.status && (
         <p className="mb-4 text-sm italic text-ternary sm:text-base md:text-xl">

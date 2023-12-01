@@ -14,6 +14,7 @@ import { statusType } from './BookListPage';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
 import RenderStars from '../utils/RenderStars';
+import { shortenTitle } from '../utils/helpers';
 
 interface IBookPreview {
   book: ReviewsRecord;
@@ -59,7 +60,9 @@ const BookPreview = ({ book }: IBookPreview) => {
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
-        <p className="text-l mb-2 font-semibold">{bookData.title}</p>
+        <p className="text-l mb-2 font-semibold">
+          {shortenTitle(bookData.title)}
+        </p>
         <RenderStars rating={book.rating ?? 0} />
         <ButtonOptions
           bookStatus={book.status as statusType}

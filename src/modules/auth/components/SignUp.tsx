@@ -86,8 +86,8 @@ const SignUp = () => {
             {...register('password', {
               required: 'password is required',
               minLength: {
-                value: 8,
-                message: 'Password must be at least 8 characters long',
+                value: 16,
+                message: 'Password must be at least 16 characters long',
               },
             })}
           />
@@ -133,9 +133,26 @@ const SignUp = () => {
       </Link>
 
       <p className="text-errorColour">* All fields are required</p>
-      <p className="text-errorColour">
-        * Password's must match and be at least 8 characters long
-      </p>
+      {errors.password && (
+        <p className="text-errorColour">
+          * {errors.password?.message?.toString()}
+        </p>
+      )}
+      {errors.username && (
+        <p className="text-errorColour">
+          * {errors.username?.message?.toString()}
+        </p>
+      )}
+      {errors.email && (
+        <p className="text-errorColour">
+          * {errors.email?.message?.toString()}
+        </p>
+      )}
+      {errors.confirmPassword && (
+        <p className="text-errorColour">
+          * {errors.confirmPassword?.message?.toString()}
+        </p>
+      )}
     </div>
   );
 };

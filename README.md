@@ -26,15 +26,14 @@
 - [Tailwind](https://tailwindcss.com/docs/guides/vite): Styling, MUI was also a good choice and would probably be faster for development but I prefer the increased control over component styling provided with TW
   - [Prettier-plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
 - Axios: Fetching data
-- tanstack/react-query.v5.8.2
-- tanstack/react-query-devtools.v5.8.2
-- axios.v1.6.1
-- react.v18.2.0
-- react-dom.v18.2.0
-- react-hook-form.v7.48.2
-- react-hot-toast.v2.4.1
-- react-router-dom.v6.18.0
-- react-spinners.v0.13.8"
+- [html-react-parser](https://www.npmjs.com/package/html-react-parser): The description passed from the google books api contains HTML tags, so we cant simply pass the value as the innerhtml of
+- [tanstack/react-query](https://tanstack.com/query/latest/docs/react/examples/react/basic): Used for remote state management (handles all data fetching and mutation to/from supabase)
+- [tanstack/react-query-devtools]: Makes it easy to track remote state variables throughout the lifecycle of the web app. Helped me spot when values weren't updating/behaving as expected and identify the shape of the data that came in
+- [axios](https://axios-http.com/docs/api_intro): Used for fetching from the google books api
+- [react-hook-form](https://react-hook-form.com/docs/useform): The main benefit was ease of implementing client side validation
+- [react-hot-toast](https://react-hot-toast.com/docs/toast): Makes making a toast notification super simple and easy, more user friendly
+- [react-router-dom](https://reactrouter.com/en/main/start/tutorial): Used to handle routing and also for querying data with loader functions
+- [react-spinners]: Used for a loader symbol when waiting for data to be fetched
 
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 - [Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/reactjs): Backend-as-a-service (BaaS)
