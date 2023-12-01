@@ -3,7 +3,15 @@ interface IError {
 }
 
 const Error = ({ message }: IError) => {
-  return message ? <h1>{message}</h1> : <h1>Not Found</h1>;
+  return message ? (
+    <p data-testid="errorMessage" className="m-10 text-3xl text-ternary">
+      🚨🚨🚨 Error: {message} 🚨🚨🚨
+    </p>
+  ) : (
+    <p data-testid="errorMessage" className="m-10 text-3xl text-ternary">
+      🚨😒❌🚫 ERROR: Not Found 🚫❌😒🚨
+    </p>
+  );
 };
 
 export default Error;
