@@ -14,7 +14,7 @@ const UpdateUsernameForm = () => {
     e.preventDefault();
     if (!username) return;
     if (username.length > 16) {
-      toast.error('Username is too long');
+      toast.error('Username must be less than 16 characters');
       return;
     }
 
