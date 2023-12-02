@@ -11,7 +11,7 @@ import { useRemoveBookFromList } from '../../modules/booksList/hooks/useRemoveBo
 import { useMarkBookAsToRead } from '../../modules/booksSearch/hooks/useMarkBookAsToRead';
 import Button from '../Button/Button';
 
-interface IButtonOptions {
+export interface IButtonOptions {
   bookStatus: statusType;
   book_id: string;
   book_title: string;
@@ -49,6 +49,7 @@ const ButtonOptions = ({
       return (
         <>
           <Button
+            data-testid="markReadButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => markBookAsRead({ user_id, book_id })}
@@ -56,6 +57,7 @@ const ButtonOptions = ({
             Mark read
           </Button>
           <Button
+            data-testid="markDroppedButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => dropBook({ book_id, user_id })} //TODO: TAKE USER_ID
@@ -63,6 +65,7 @@ const ButtonOptions = ({
             Mark dropped
           </Button>
           <Button
+            data-testid="removeButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => removeBookFromList({ book_id, user_id })}
@@ -77,6 +80,7 @@ const ButtonOptions = ({
       return (
         <>
           <Button
+            data-testid="markReadingButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => markBookAsReading({ book_id, user_id })}
@@ -84,6 +88,7 @@ const ButtonOptions = ({
             Mark reading
           </Button>
           <Button
+            data-testid="removeButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => removeBookFromList({ book_id, user_id })}
@@ -96,6 +101,7 @@ const ButtonOptions = ({
       if (!comment || !rating)
         return (
           <Button
+            data-testid="addReviewButton"
             type="ternary"
             disabled={isLoading}
             onClick={() => openModal(comment ?? '', book_id, rating ?? 0)}
@@ -105,6 +111,7 @@ const ButtonOptions = ({
         );
       return (
         <Button
+          data-testid="editReviewButton"
           type="ternary"
           disabled={isLoading}
           onClick={() => openModal(comment ?? '', book_id, rating ?? 0)}
@@ -112,9 +119,6 @@ const ButtonOptions = ({
           Edit review
         </Button>
       );
-    case 'reviewed':
-      return null;
-    // Book not in list yet
     default:
       return (
         <Button
