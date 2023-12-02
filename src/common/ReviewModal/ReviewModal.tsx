@@ -44,7 +44,10 @@ const ReviewModal = () => {
   }
 
   return (
-    <div className="fixed inset-0 flex h-full w-full items-center justify-center overflow-y-auto bg-gray bg-opacity-50">
+    <div
+      data-testid="reviewForm"
+      className="fixed inset-0 flex h-full w-full items-center justify-center overflow-y-auto bg-gray bg-opacity-50"
+    >
       <div className="h-[560px] w-[400px] rounded-3xl bg-primary p-5 shadow-xl">
         <form onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}>
           <div className="mb-1">
@@ -59,6 +62,7 @@ const ReviewModal = () => {
               onSetRating={setRatingInputValue}
             />
             <textarea
+              data-testid="commentInput"
               value={reviewInputValue ?? ''}
               onChange={(e) => setReviewInputValue(e.currentTarget.value)}
               className="text-gray-700 focus:shadow-outline h-[400px] w-full appearance-none rounded-3xl border px-3 py-2 leading-tight shadow focus:outline-none"
@@ -68,10 +72,19 @@ const ReviewModal = () => {
             </textarea>
           </div>
           <div className="flex justify-end">
-            <Button type="small" disabled={isAddingReview} onClick={closeModal}>
+            <Button
+              data-testid="cancelReviewButton"
+              type="small"
+              disabled={isAddingReview}
+              onClick={closeModal}
+            >
               Cancel
             </Button>
-            <Button type="small" disabled={isAddingReview}>
+            <Button
+              data-testid="submitReviewButton"
+              type="small"
+              disabled={isAddingReview}
+            >
               Submit
             </Button>
           </div>

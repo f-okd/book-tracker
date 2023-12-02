@@ -28,7 +28,7 @@
 - Axios: Fetching data
 - [html-react-parser](https://www.npmjs.com/package/html-react-parser): The description passed from the google books api contains HTML tags, so we cant simply pass the value as the innerhtml of
 - [tanstack/react-query](https://tanstack.com/query/latest/docs/react/examples/react/basic): Used for remote state management (handles all data fetching and mutation to/from supabase)
-- [tanstack/react-query-devtools]: Makes it easy to track remote state variables throughout the lifecycle of the web app. Helped me spot when values weren't updating/behaving as expected and identify the shape of the data that came in
+- [tanstack/react-query-devtools](https://tanstack.com/query/v4/docs/react/devtools): Makes it easy to track remote state variables throughout the lifecycle of the web app. Helped me spot when values weren't updating/behaving as expected and identify the shape of the data that came in
 - [axios](https://axios-http.com/docs/api_intro): Used for fetching from the google books api
 - [react-hook-form](https://react-hook-form.com/docs/useform): The main benefit was ease of implementing client side validation
 - [react-hot-toast](https://react-hot-toast.com/docs/toast): Makes making a toast notification super simple and easy, more user friendly
@@ -37,9 +37,7 @@
 
 - [Google books api](https://developers.google.com/books/docs/v1/getting_started): used to search for books
 - [Supabase](https://supabase.com/docs/guides/getting-started/quickstarts/reactjs): Backend-as-a-service (BaaS)
-- [Book Logo](https://www.svgrepo.com/svg/513520/book-closed)
-
-"@supabase/supabase-js": "^2.38.4",
+- [Book Logo](https://www.svgrepo.com/svg/513520/book-closed): (I didn't create the book logo used in the project)
 
 Helpful resources:
 [How to use Vitest with Jest-DOM and React Testing Library](https://www.youtube.com/watch?v=G-4zgIPsjkU)

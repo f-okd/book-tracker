@@ -8,6 +8,7 @@ interface IStar {
 export const Star = ({ onRate, full, onHoverIn, onHoverOut }: IStar) => {
   return (
     <span
+      data-testid="star"
       role="button"
       className="block h-[40px] w-[40px] cursor-pointer"
       onClick={onRate}
@@ -16,6 +17,7 @@ export const Star = ({ onRate, full, onHoverIn, onHoverOut }: IStar) => {
     >
       {full ? (
         <svg
+          data-testid="fullStar"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="#FFD700"
@@ -25,6 +27,7 @@ export const Star = ({ onRate, full, onHoverIn, onHoverOut }: IStar) => {
         </svg>
       ) : (
         <svg
+          data-testid="blankStar"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

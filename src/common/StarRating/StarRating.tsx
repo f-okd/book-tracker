@@ -20,7 +20,7 @@ const StarRating = ({ defaultRating, onSetRating }: IStarRating) => {
     onSetRating(rating); //update rating value in modal, so it can be used to update remote rating value
   };
   return (
-    <div className="flex items-center gap-[5px]">
+    <div data-testid="starRating" className="flex items-center gap-[5px]">
       <div className="flex">
         {Array.from({ length: 5 }, (_, i) => (
           <Star

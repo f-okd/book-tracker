@@ -1,30 +1,15 @@
-import { describe } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import Error from './Error';
+import { describe, it } from 'vitest';
+import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter, useLocation } from 'react-router-dom';
-import { ReactNode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ShowPath } from '../Button/Button.test';
+import NotFound from './NotFound';
 
-export const ShowPath = (): ReactNode => {
-  const location = useLocation();
-  return <div>{location.pathname}</div>;
-};
-
-describe('test for error page', () => {
-  it('should display an error message if a message is given', () => {
-    render(
-      <BrowserRouter>
-        <Error message="Test message" />
-      </BrowserRouter>,
-    );
-    expect(screen.getByTestId('errorMessage')).toHaveTextContent(
-      'Test message',
-    );
-  });
+describe('test for NotFound page', () => {
   it('should display not found if no error message is passed in', () => {
     render(
       <BrowserRouter>
-        <Error />
+        <NotFound />
       </BrowserRouter>,
     );
     expect(screen.getByTestId('notFoundErrorMessage')).toHaveTextContent(
@@ -34,7 +19,7 @@ describe('test for error page', () => {
   it('should display a link to return to the home page', async () => {
     render(
       <BrowserRouter>
-        <Error />
+        <NotFound />
         <ShowPath />
       </BrowserRouter>,
     );

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { ReactNode, useState } from 'react';
 
 // Create a component that always returns the path
-const ShowPath = (): ReactNode => {
+export const ShowPath = (): ReactNode => {
   const location = useLocation();
   return <div>{location.pathname}</div>;
 };
