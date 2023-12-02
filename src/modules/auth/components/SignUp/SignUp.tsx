@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useSignUp } from '../hooks/useSignUp';
+import { useSignUp } from '../../hooks/useSignUp';
 
 const SignUp = () => {
   const { signUp, isSigningUp } = useSignUp();
@@ -38,6 +38,7 @@ const SignUp = () => {
           </label>
           <input
             className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
+            data-testid="usernameInput"
             id="username"
             type="text"
             placeholder="Username"
@@ -54,6 +55,7 @@ const SignUp = () => {
             Email
           </label>
           <input
+            data-testid="emailInput"
             className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="email"
             type="text"
@@ -79,6 +81,7 @@ const SignUp = () => {
             Password
           </label>
           <input
+            data-testid="passwordInput"
             className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="password"
             type="password"
@@ -104,6 +107,7 @@ const SignUp = () => {
             Confirm Password
           </label>
           <input
+            data-testid="confirmPasswordInput"
             className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="confirmPassword"
             type="password"
@@ -117,6 +121,7 @@ const SignUp = () => {
         </div>
         <div className="flex items-center justify-between">
           <button
+            data-testid="signupButton"
             disabled={isSigningUp}
             className="hover:bg-blue-700 focus:shadow-outline rounded bg-ternary px-4 py-2 font-semibold text-primary focus:outline-none"
             type="submit"
@@ -126,6 +131,7 @@ const SignUp = () => {
         </div>
       </form>
       <Link
+        data-testid="loginLink"
         to="/login"
         className="text-semibold text-xl text-ternary hover:font-bold"
       >

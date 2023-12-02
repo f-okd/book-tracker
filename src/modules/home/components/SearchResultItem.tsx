@@ -12,6 +12,7 @@ interface ISearchResultItem {
 const SearchResultItem = ({ book }: ISearchResultItem) => {
   return (
     <div
+      data-testid="searchResultItem"
       key={book.id}
       className="solid mx-4 mb-1 flex flex-row items-center rounded-xl border bg-secondary p-1"
       id="bookPreview"

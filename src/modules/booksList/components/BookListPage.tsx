@@ -9,7 +9,7 @@
 */
 
 import { useState } from 'react';
-import Mininav from './Mininav';
+import Mininav from './MiniNav/Mininav';
 import BookList from './BookList';
 import { getBooksFromDb } from '../../../services/supabase/apiBooks';
 import { useQuery } from '@tanstack/react-query';

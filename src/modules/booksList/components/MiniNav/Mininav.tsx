@@ -3,8 +3,8 @@
   They can filter books by status i.e. only books marked as read will be visible if they click read
 */
 
-import Button from '../../../common/Button/Button';
-import { statusType } from './BookListPage';
+import Button from '../../../../common/Button/Button';
+import { statusType } from '../BookListPage';
 
 interface IMininav {
   toggleSetFilterBy: (status: statusType) => void;

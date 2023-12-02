@@ -26,7 +26,7 @@
 - [Tailwind](https://tailwindcss.com/docs/guides/vite): Styling, MUI was also a good choice and would probably be faster for development but I prefer the increased control over component styling provided with TW
   - [Prettier-plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
 - Axios: Fetching data
-- [html-react-parser](https://www.npmjs.com/package/html-react-parser): The description passed from the google books api contains HTML tags, so we cant simply pass the value as the innerhtml of
+- [html-react-parser](https://www.npmjs.com/package/html-react-parser): The description passed from the google books api contains HTML tags, so we cant simply pass the value as the innerhtml (although I could have just used dangerouly_setInnerHtml() fn provided by react)
 - [tanstack/react-query](https://tanstack.com/query/latest/docs/react/examples/react/basic): Used for remote state management (handles all data fetching and mutation to/from supabase)
 - [tanstack/react-query-devtools](https://tanstack.com/query/v4/docs/react/devtools): Makes it easy to track remote state variables throughout the lifecycle of the web app. Helped me spot when values weren't updating/behaving as expected and identify the shape of the data that came in
 - [axios](https://axios-http.com/docs/api_intro): Used for fetching from the google books api

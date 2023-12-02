@@ -1,5 +1,5 @@
-import RenderStars from '../utils/RenderStars';
-import { statusType } from './BookListPage';
+import RenderStars from '../../utils/RenderStars';
+import { statusType } from '../BookListPage';
 
 interface IReview {
   comment: string | null;
@@ -13,10 +13,14 @@ const Review = ({ comment, status, rating }: IReview) => {
     <div>
       <p className="text-2xl text-ternary ">Review:</p>
       {rating && <RenderStars rating={rating} />}
-      {comment && <p className="italic">{comment}</p>}
+      {comment && (
+        <p data-testid="reviewComment" className="italic">
+          {comment}
+        </p>
+      )}
       {!comment && (
-        <p className="italic">
-          You haven't reviewed left a review for this book yet
+        <p data-testid="errorMessage" className="italic">
+          You haven't left a review for this book yet
         </p>
       )}
     </div>

@@ -50,14 +50,17 @@ const BookPreview = ({ book }: IBookPreview) => {
   if (fetcher.data) {
     const bookData = fetcher.data;
     return (
-      <div className="m-2 flex h-[420px] w-[220px] flex-col rounded-3xl border border-ternary bg-secondary p-2 hover:cursor-pointer">
+      <div
+        data-testid={`bookPreview-${book.book_id}`}
+        className="m-2 flex h-[420px] w-[220px] flex-col rounded-3xl border border-ternary bg-secondary p-2 hover:cursor-pointer"
+      >
         <img
           className="mb-1 h-[240px] w-[180px] self-center rounded-xl border border-ternary"
           src={bookData.thumbnail ?? 'bookNotFound.png'}
           alt={`Cover of the book: ${bookData.title}`}
           onClick={() => navigate(`/book/${bookData.id}`)}
         />
-        <p className="text-l mb-2 font-semibold">
+        <p data-testid="" className="text-l mb-2 font-semibold">
           {shortenTitle(bookData.title)}
         </p>
         <RenderStars rating={book.rating ?? 0} />

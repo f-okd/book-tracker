@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useLogin } from '../hooks/useLogin';
+import { useLogin } from '../../hooks/useLogin';
 import { Link } from 'react-router-dom';
-import Button from '../../../common/Button/Button';
-import { supabaseSignInWithGoogle } from '../../../services/supabase/apiAuth';
+import Button from '../../../../common/Button/Button';
+import { supabaseSignInWithGoogle } from '../../../../services/supabase/apiAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,6 +40,7 @@ const Login = () => {
             Email
           </label>
           <input
+            data-testid="emailInput"
             className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="email"
             type="text"
@@ -57,6 +58,7 @@ const Login = () => {
             Password
           </label>
           <input
+            data-testid="passwordInput"
             className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
             id="password"
             type="password"

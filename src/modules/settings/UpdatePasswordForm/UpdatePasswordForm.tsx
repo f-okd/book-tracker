@@ -1,4 +1,4 @@
-import { useUpdateUser } from '../auth/hooks/useUpdateUser';
+import { useUpdateUser } from '../../auth/hooks/useUpdateUser';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const UpdatePasswordForm = () => {
@@ -29,6 +29,7 @@ const UpdatePasswordForm = () => {
           </label>
           <input
             className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
+            data-testid="passwordInput"
             id="password"
             type="password"
             placeholder="******************"
@@ -54,6 +55,7 @@ const UpdatePasswordForm = () => {
           </label>
           <input
             className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
+            data-testid="confirmPasswordInput"
             id="confirmPassword"
             type="password"
             placeholder="******************"
@@ -66,6 +68,7 @@ const UpdatePasswordForm = () => {
         </div>
         <div className="flex items-center justify-between">
           <button
+            data-testid="updatePasswordButton"
             className="hover:bg-blue-700 focus:shadow-outline rounded bg-ternary px-4 py-2 font-semibold text-primary focus:outline-none"
             type="submit"
             disabled={isUpdatingUser}
@@ -75,12 +78,15 @@ const UpdatePasswordForm = () => {
         </div>
       </form>
       {errors.password && (
-        <p className="text-errorColour">
+        <p className="text-errorColour" data-testid="passwordErrorMessage">
           * {errors.password?.message?.toString()}
         </p>
       )}
       {errors.confirmPassword && (
-        <p className="text-errorColour">
+        <p
+          className="text-errorColour"
+          data-testid="confirmPasswordErrorMessage"
+        >
           * {errors.confirmPassword?.message?.toString()}
         </p>
       )}

@@ -6,12 +6,12 @@
 
 import { SyntheticEvent, useCallback, useState } from 'react';
 
-import { IBook } from '../../../utils/types';
+import { IBook } from '../../../../utils/types';
 
-import Search from './Search';
-import SearchBar from './SearchBar/SearchBar';
-import SearchResultList from './SearchResultList';
-import Loader from '../../../common/Loader/Loader';
+import Search from '../Search';
+import SearchBar from '../SearchBar';
+import SearchResultList from '../SearchResultList';
+import Loader from '../../../../common/Loader/Loader';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState('');

@@ -12,7 +12,10 @@ interface ISearchResults {
 
 const SearchResultList = ({ searchResults }: ISearchResults) => {
   return (
-    <div className="flex w-[90%] flex-col sm:w-[60%]">
+    <div
+      className="flex w-[90%] flex-col sm:w-[60%]"
+      data-testid="searchResultList"
+    >
       {searchResults.map((searchResult) => (
         <SearchResultItem key={searchResult.id} book={searchResult} />
       ))}

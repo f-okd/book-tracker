@@ -1,5 +1,5 @@
 import { useUser } from '../auth/hooks/useUser';
-import UpdatePasswordForm from './UpdatePasswordForm';
+import UpdatePasswordForm from './UpdatePasswordForm/UpdatePasswordForm';
 import UpdateUsernameForm from './UpdateUsernameForm';
 
 const Settings = () => {

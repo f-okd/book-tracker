@@ -15,7 +15,7 @@ import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
 import Loader from '../../../common/Loader/Loader';
 import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
 import { statusType } from '../../booksList/components/BookListPage';
-import Review from '../../booksList/components/Review';
+import Review from '../../booksList/components/Review/Review';
 import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
 import parse from 'html-react-parser';
 
