@@ -33,9 +33,9 @@ describe('test for login page component', () => {
 
     const user = userEvent.setup();
     await user.type(emailInput, 'test@test.com');
-    await waitFor(() => expect(emailInput).toHaveTextContent('test@test.com'));
+    await waitFor(() => expect(emailInput).toHaveValue('test@test.com'));
     await user.type(passwordInput, 'password123');
-    await waitFor(() => expect(emailInput).toHaveTextContent('password123'));
+    await waitFor(() => expect(passwordInput).toHaveValue('password123'));
   });
   it('should render sign in button and google sign in button', () => {
     render(<TestEnv />);

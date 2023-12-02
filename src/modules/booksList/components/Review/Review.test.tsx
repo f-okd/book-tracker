@@ -14,7 +14,7 @@ describe('test for review component', () => {
     render(<Review comment={'test review'} status="read" rating={rating} />);
     // the actual value of the span will be "⭐⭐⭐" but thats an invalid character to test for
     // instead we pass the rating into the testid of the component and check the values align in the test
-    expect(screen.getByTestId(`rating=${rating}`)).toBeInTheDocument();
+    expect(screen.getByTestId(`rating-${rating}`)).toBeInTheDocument();
     expect(screen.getByTestId('reviewComment')).toHaveTextContent(
       'test review',
     );

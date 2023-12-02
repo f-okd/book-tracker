@@ -30,6 +30,6 @@ export const searchForBooksFromGoogle = async (
 
     return booksFromApi;
   } catch (e) {
-    console.log(`Error fetching books: ${(e as Error).message}`);
+    // console.log(`Error fetching books: ${(e as Error).message}`);
   }
 };
