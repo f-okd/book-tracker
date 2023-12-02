@@ -1,13 +1,21 @@
+/* eslint-disable react-refresh/only-export-components */
 import Error from './common/Error/Error';
 import Layout from './common/Layout/Layout';
-import Home from './modules/home/components/Home/Home';
-import Book from './modules/booksSearch/components/BookDetailsPage';
 import { loader as bookLoader } from './modules/booksSearch/components/BookDetailsPage';
-import Login from './modules/auth/components/Login/Login';
-import BookListPage from './modules/booksList/components/BookListPage';
 import ProtectedRoute from './modules/auth/components/ProtectedRoute';
-import SignUp from './modules/auth/components/SignUp/SignUp';
-import Settings from './modules/settings/Settings';
+import { Suspense, lazy } from 'react';
+import Loader from './common/Loader/Loader';
+
+const Login = lazy(() => import('./modules/auth/components/Login/Login'));
+const SignUp = lazy(() => import('./modules/auth/components/SignUp/SignUp'));
+const Settings = lazy(() => import('./modules/settings/Settings'));
+const Home = lazy(() => import('./modules/home/components/Home/Home'));
+const Book = lazy(
+  () => import('./modules/booksSearch/components/BookDetailsPage'),
+);
+const BookListPage = lazy(
+  () => import('./modules/booksList/components/BookListPage'),
+);
 
 // need to keep routes config separate so we can instantiate different types of routers for tests/production
 // see App.test.tsx for use with MemoryRouter
@@ -15,7 +23,9 @@ export const routesConfig = [
   {
     element: (
       <ProtectedRoute>
-        <Layout />
+        <Suspense fallback={<Loader />}>
+          <Layout />
+        </Suspense>
       </ProtectedRoute>
     ),
     errorElement: <Error />,
@@ -41,11 +51,19 @@ export const routesConfig = [
     ],
   },
   {
-    element: <Login />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Login />
+      </Suspense>
+    ),
     path: 'login',
   },
   {
-    element: <SignUp />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <SignUp />
+      </Suspense>
+    ),
     path: 'register',
   },
 ];
