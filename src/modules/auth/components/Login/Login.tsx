@@ -87,7 +87,7 @@ const Login = () => {
       </Link>
       <div>
         <p className="text-semibold pt-4 text-xl text-ternary hover:font-bold">
-          Alternatively...
+          Alternatively....
         </p>
         <Button type="ternary" onClick={supabaseSignInWithGoogle}>
           Sign in with Google
