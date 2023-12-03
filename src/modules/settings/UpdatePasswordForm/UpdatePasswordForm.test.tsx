@@ -37,7 +37,7 @@ describe('test for update password form component', async () => {
     await user.click(screen.getByTestId('updatePasswordButton'));
 
     expect(screen.getByTestId('passwordErrorMessage')).toHaveTextContent(
-      'Password must be at least 16 characters lonk',
+      'Password must be at least 16 characters long',
     );
   });
   it('should give an error message if passwords do not match', async () => {
