@@ -122,6 +122,7 @@ const ButtonOptions = ({
     default:
       return (
         <Button
+          data-testid="addToListButton"
           type="ternary"
           disabled={isMarkingToRead === 'pending'}
           onClick={() =>

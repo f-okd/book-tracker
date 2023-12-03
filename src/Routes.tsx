@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import Error from './common/Error/Error';
-import Layout from './common/Layout/Layout';
+import Layout from './common/Layout/Layout/Layout';
 import { loader as bookLoader } from './modules/booksSearch/components/BookDetailsPage';
 import ProtectedRoute from './modules/auth/components/ProtectedRoute';
 import { Suspense, lazy } from 'react';

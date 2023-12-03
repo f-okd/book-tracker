@@ -1,9 +1,15 @@
 import { describe } from 'vitest';
-import { screen, render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 import SignUp from './SignUp';
+import { ReactNode } from 'react';
+
+export const ShowPath = (): ReactNode => {
+  const location = useLocation();
+  return <div data-testid="pathname">{location.pathname}</div>;
+};
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +25,7 @@ const TestEnv = () => {
       <MemoryRouter>
         <>
           <SignUp />
+          <ShowPath />
         </>
       </MemoryRouter>
     </QueryClientProvider>
@@ -43,10 +50,15 @@ describe('test for login page component', () => {
   });
   it('should show the login link', async () => {
     render(<TestEnv />);
-    expect(
-      screen.getByRole('link', {
-        name: 'Already have an account? Login',
-      }),
-    ).toBeInTheDocument();
+    const loginLink = screen.getByRole('link', {
+      name: 'Already have an account? Login',
+    });
+    expect(loginLink).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    await user.click(loginLink);
+    await waitFor(() => {
+      expect(screen.getByTestId('pathname')).toHaveTextContent('login');
+    });
   });
 });

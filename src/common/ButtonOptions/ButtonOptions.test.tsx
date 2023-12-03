@@ -63,30 +63,49 @@ const StatusUnreviewedTestEnv = () => {
 const StatusReviewedTestEnv = () => {
   return <TestEnv bookStatus="read" comment="test comment" rating={5} />;
 };
+const UnreadTestEnv = () => {
+  return <TestEnv bookStatus="" comment={null} rating={5} />;
+};
 
 describe('test for Button options', () => {
   it('should render buttons: "mark read", "mark dropped", "remove", if this book has "reading" status ', () => {
     render(<StatusReadingTestEnv />);
-    expect(screen.getByTestId('markReadButton')).toBeInTheDocument();
-    expect(screen.getByTestId('markDroppedButton')).toBeInTheDocument();
-    expect(screen.getByTestId('removeButton')).toBeInTheDocument();
+    expect(screen.getByTestId('markReadButton')).toHaveTextContent('Mark read');
+    expect(screen.getByTestId('markDroppedButton')).toHaveTextContent(
+      'Mark dropped',
+    );
+    expect(screen.getByTestId('removeButton')).toHaveTextContent('Remove');
   });
   it('should render buttons: "mark reading", "remove", if this book has "toRead" status', () => {
     render(<StatusToReadTestEnv />);
-    expect(screen.getByTestId('markReadingButton')).toBeInTheDocument();
-    expect(screen.getByTestId('removeButton')).toBeInTheDocument();
+    expect(screen.getByTestId('markReadingButton')).toHaveTextContent(
+      'Mark reading',
+    );
+    expect(screen.getByTestId('removeButton')).toHaveTextContent('Remove');
   });
   it('should render buttons: "mark reading", "remove", if this book has "dnf" status', () => {
     render(<StatusDnfTestEnv />);
-    expect(screen.getByTestId('markReadingButton')).toBeInTheDocument();
-    expect(screen.getByTestId('removeButton')).toBeInTheDocument();
+    expect(screen.getByTestId('markReadingButton')).toHaveTextContent(
+      'Mark reading',
+    );
+    expect(screen.getByTestId('removeButton')).toHaveTextContent('Remove');
   });
   it('should render "add review" button, if this book has status "read" and has a review', () => {
     render(<StatusUnreviewedTestEnv />);
-    expect(screen.getByTestId('addReviewButton')).toBeInTheDocument();
+    expect(screen.getByTestId('addReviewButton')).toHaveTextContent(
+      'Add a review',
+    );
   });
   it('should render "edit review" button, if this book has status "read" and has a review', () => {
     render(<StatusReviewedTestEnv />);
-    expect(screen.getByTestId('editReviewButton')).toBeInTheDocument();
+    expect(screen.getByTestId('editReviewButton')).toHaveTextContent(
+      'Edit review',
+    );
+  });
+  it('should render "add to list" button, if this book has not been read', () => {
+    render(<UnreadTestEnv />);
+    expect(screen.getByTestId('addToListButton')).toHaveTextContent(
+      'Add to List',
+    );
   });
 });

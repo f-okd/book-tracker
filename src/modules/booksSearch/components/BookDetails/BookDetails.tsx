@@ -10,13 +10,13 @@ SERVES TWO PRIMARY FUNCTIONS
 */
 import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { IBook } from '../../../utils/types';
-import { supabaseGetBookFromDb } from '../../../services/supabase/apiBooks';
-import Loader from '../../../common/Loader/Loader';
-import ButtonOptions from '../../../common/ButtonOptions/ButtonOptions';
-import { statusType } from '../../booksList/components/BookListPage';
-import Review from '../../booksList/components/Review/Review';
-import { ModalContext } from '../../../common/ReviewModal/ModalProvider';
+import { IBook } from '../../../../utils/types';
+import { supabaseGetBookFromDb } from '../../../../services/supabase/apiBooks';
+import Loader from '../../../../common/Loader/Loader';
+import ButtonOptions from '../../../../common/ButtonOptions/ButtonOptions';
+import { statusType } from '../../../booksList/components/BookListPage';
+import Review from '../../../booksList/components/Review/Review';
+import { ModalContext } from '../../../../common/ReviewModal/ModalProvider';
 import parse from 'html-react-parser';
 
 interface IBookDetails {
@@ -50,22 +50,28 @@ const BookDetails = ({ book }: IBookDetails) => {
       id="bookCard"
       className="mt-4 flex w-[90%] flex-col rounded-3xl border border-ternary bg-secondary p-5 md:w-[60%]"
     >
-      <h2 className="mb-2 text-3xl font-semibold">{book.title}</h2>
+      <h2 data-testid="bookTitle" className="mb-2 text-3xl font-semibold">
+        {book.title}
+      </h2>
 
-      <p className="mb-4 text-sm italic md:text-xl">
+      <p data-testid="authors" className="mb-4 text-sm italic md:text-xl">
         {book.authors && book.authors.length > 0
           ? book.authors.join(', ')
           : 'No authors listed'}
       </p>
 
       <img
+        data-testid="bookThumbnail"
         className="mb-4 w-1/3 self-center rounded-xl border border-ternary md:w-1/4"
         src={book.thumbnail ?? 'bookNotFound.png'}
         alt={`Cover of the book: ${book.title}`}
       />
 
       {book.description && (
-        <div className="mb-4 text-sm sm:text-base md:text-lg">
+        <div
+          data-testid="bookDescription"
+          className="mb-4 text-sm sm:text-base md:text-lg"
+        >
           {parse(book.description)}
         </div>
       )}

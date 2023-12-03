@@ -4,7 +4,7 @@
 */
 
 import { IBook } from '../../../utils/types';
-import SearchResultItem from './SearchResultItem';
+import SearchResultItem from './SearchResultItem/SearchResultItem';
 
 interface ISearchResults {
   searchResults: IBook[];

@@ -9,7 +9,7 @@
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { getBookFromGoogle } from '../../../services/googleBooks/apiGoogleBooks';
 import { IBook } from '../../../utils/types';
-import BookDetails from './BookDetails';
+import BookDetails from './BookDetails/BookDetails';
 
 /*
   Main container for book details page

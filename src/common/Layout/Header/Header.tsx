@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
-import Logout from '../../modules/auth/components/Logout';
+import Button from '../../Button/Button';
+import Logout from '../../../modules/auth/components/Logout';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -17,6 +17,6 @@ export const parseBook = (apiResponse: any): IBook => {
     smallThumbnail,
     thumbnail,
   };
-
+  console.log(JSON.stringify(extractedData));
   return extractedData;
 };
