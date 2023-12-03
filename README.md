@@ -336,6 +336,67 @@ status = 200
 
 - Will redeploy every time a change is detected
 
+### Running tests
+
+We write our tests using [vitest](https://vitest.dev/guide/)
+[Enabling coverage reporting](https://vitest.dev/guide/coverage.html)
+
+```
+npm run test
+npm run ui <!--View test results on localhost, coverage is  -->
+npm run coverage <!--View coverage report -->
+```
+
+Sometimes you have to give the test some additional context, such as a BrowserRouter if the component tested has a link. Here is an example test where we test the error page:
+
+```
+<!-- We use a custom ShowPath that will always render the path on the screen, because we can't use the useLocation hook -->
+export const ShowPath = (): ReactNode => {
+  const location = useLocation();
+  return <div>{location.pathname}</div>;
+};
+
+describe('test for error page', () => {
+  it('should display an error message if a message is given', () => {
+    render(
+      <BrowserRouter>
+        <Error message="Test message" />
+      </BrowserRouter>,
+    );
+    expect(screen.getByTestId('errorMessage')).toHaveTextContent(
+      'Test message',
+    );
+  });
+  <!-- The default Error message is a NotFound message -->
+  it('should display not found if no error message is passed in', () => {
+    render(
+      <BrowserRouter>
+        <Error />
+      </BrowserRouter>,
+    );
+    expect(screen.getByTestId('notFoundErrorMessage')).toHaveTextContent(
+      'Not Found',
+    );
+  });
+  <!-- Home page is at "/" so we test that the path on the screen will be "/" -->
+  it('should display a link to return to the home page', async () => {
+    render(
+      <BrowserRouter>
+        <Error />
+        <ShowPath />
+      </BrowserRouter>,
+    );
+    const navigateHomeButton = screen.getByTestId('notFoundErrorMessage');
+    const user = userEvent.setup();
+    await user.click(navigateHomeButton);
+    await waitFor(() => {
+      expect(screen.getByText('/')).toBeInTheDocument();
+    });
+  });
+});
+
+```
+
 ### What would I change?
 
 - Store user + user books state in redux!!
