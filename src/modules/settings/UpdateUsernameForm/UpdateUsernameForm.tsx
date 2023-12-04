@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { useUser } from '../auth/hooks/useUser';
-import { useUpdateUser } from '../auth/hooks/useUpdateUser';
+import { useUser } from '../../auth/hooks/useUser';
+import { useUpdateUser } from '../../auth/hooks/useUpdateUser';
 import toast from 'react-hot-toast';
 
 const UpdateUsernameForm = () => {
@@ -35,6 +35,7 @@ const UpdateUsernameForm = () => {
           Email
         </label>
         <input
+          data-testid="emailInput"
           className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
           id="email"
           type="text"
@@ -50,6 +51,7 @@ const UpdateUsernameForm = () => {
           Username
         </label>
         <input
+          data-testid="usernameInput"
           className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-ternary shadow focus:outline-none"
           id="username"
           type="text"
@@ -61,6 +63,7 @@ const UpdateUsernameForm = () => {
       </div>
       <div className="flex items-center justify-between">
         <button
+          data-testid="updateUsernameButton"
           className="hover:bg-blue-700 focus:shadow-outline rounded bg-ternary px-4 py-2 font-semibold text-primary focus:outline-none"
           type="submit"
           disabled={isUpdatingUser}

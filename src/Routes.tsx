@@ -2,13 +2,13 @@
 import Error from './common/Error/Error';
 import Layout from './common/Layout/Layout/Layout';
 import { loader as bookLoader } from './modules/booksSearch/components/BookDetailsPage';
-import ProtectedRoute from './modules/auth/components/ProtectedRoute';
+import ProtectedRoute from './modules/auth/components/ProtectedRoute/ProtectedRoute';
 import { Suspense, lazy } from 'react';
 import Loader from './common/Loader/Loader';
 
 const Login = lazy(() => import('./modules/auth/components/Login/Login'));
 const SignUp = lazy(() => import('./modules/auth/components/SignUp/SignUp'));
-const Settings = lazy(() => import('./modules/settings/Settings'));
+const Settings = lazy(() => import('./modules/settings/Settings/Settings'));
 const Home = lazy(() => import('./modules/home/components/Home/Home'));
 const Book = lazy(
   () => import('./modules/booksSearch/components/BookDetailsPage'),

@@ -1,6 +1,6 @@
-import { useUser } from '../auth/hooks/useUser';
-import UpdatePasswordForm from './UpdatePasswordForm/UpdatePasswordForm';
-import UpdateUsernameForm from './UpdateUsernameForm';
+import { useUser } from '../../auth/hooks/useUser';
+import UpdatePasswordForm from '../UpdatePasswordForm/UpdatePasswordForm';
+import UpdateUsernameForm from '../UpdateUsernameForm/UpdateUsernameForm';
 
 const Settings = () => {
   const user = useUser().user;

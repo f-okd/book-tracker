@@ -138,7 +138,9 @@ const SignUp = () => {
         Already have an account? Login
       </Link>
 
-      <p className="text-errorColour">* All fields are required</p>
+      <p data-testid="allRequired" className="text-errorColour">
+        * All fields are required
+      </p>
       {errors.password && (
         <p className="text-errorColour">
           * {errors.password?.message?.toString()}

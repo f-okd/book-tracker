@@ -1,7 +1,7 @@
 // We wrap the entire app in a protected rout component
 import { ReactNode, useEffect } from 'react';
-import { useUser } from '../hooks/useUser';
-import Loader from '../../../common/Loader/Loader';
+import { useUser } from '../../hooks/useUser';
+import Loader from '../../../../common/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 
 interface IProtectedRoute {

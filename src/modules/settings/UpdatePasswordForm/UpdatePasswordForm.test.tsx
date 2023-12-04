@@ -1,9 +1,15 @@
 import { describe } from 'vitest';
-import { screen, render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UpdatePasswordForm from './UpdatePasswordForm';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
+import * as supabaseAuthHelpers from '../../../services/supabase/apiAuth';
+
+const supabaseUpdateCurrentUserMock = vi.spyOn(
+  supabaseAuthHelpers,
+  'supabaseUpdateCurrentUser',
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +32,9 @@ const TestEnv = () => {
 };
 
 describe('test for update password form component', async () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
   it('should give an error message if the passwords entered are too short', async () => {
     render(<TestEnv />);
     const confirmPasswordInput = screen.getByTestId('confirmPasswordInput');
@@ -65,6 +74,21 @@ describe('test for update password form component', async () => {
     );
     expect(screen.getByTestId('confirmPasswordErrorMessage')).toHaveTextContent(
       'Please confirm password',
+    );
+  });
+  it('should call supabaseUpdatePassword() when the button is clicked with valid inputs', async () => {
+    render(<TestEnv />);
+
+    const user = userEvent.setup();
+    await user.type(screen.getByTestId('passwordInput'), '1234567890123456');
+    await user.type(
+      screen.getByTestId('confirmPasswordInput'),
+      '1234567890123456',
+    );
+    await user.click(screen.getByTestId('updatePasswordButton'));
+
+    waitFor(() =>
+      expect(supabaseUpdateCurrentUserMock).toHaveBeenCalledTimes(1),
     );
   });
 });

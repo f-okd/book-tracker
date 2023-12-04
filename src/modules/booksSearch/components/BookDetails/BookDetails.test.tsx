@@ -5,6 +5,12 @@ import { IBook } from '../../../../utils/types';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient } from '@tanstack/query-core';
 import { QueryClientProvider } from '@tanstack/react-query';
+import * as supabaseBookHelpers from '../../../../services/supabase/apiBooks';
+
+const supabaseGetBookFromDbMock = vi.spyOn(
+  supabaseBookHelpers,
+  'supabaseGetBookFromDb',
+);
 
 const book: IBook = {
   id: 'UUFADwAAQBAJ',
@@ -41,8 +47,12 @@ const TestEnv = () => {
 
 // Book will not be read by user by default
 describe('test for review component', () => {
-  it('should render the correct information for this book', async () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+  it('should call supabaseGetBookFromDb and also render the correct information for this book', async () => {
     render(<TestEnv />);
+    waitFor(() => expect(supabaseGetBookFromDbMock).toHaveBeenCalledTimes(1));
     await waitFor(
       () => {
         expect(screen.getByTestId('bookTitle')).toHaveTextContent(book.title);
@@ -52,5 +62,6 @@ describe('test for review component', () => {
       },
       { timeout: 5000 },
     );
+    supabaseGetBookFromDbMock.mockRestore();
   });
 });
