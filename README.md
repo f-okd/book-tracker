@@ -1,5 +1,7 @@
 # BookTracker
 
+[Tech stack](https://github.com/f-okd/book-tracker/blob/main/techstack.md)
+
 - Yet to come up with a name
 - Made an attempt to document how technologies were used so you can use them also or just to understand the flow of the application
 
