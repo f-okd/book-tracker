@@ -56,7 +56,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [f-okd/book-tracker](https://github.com/f-okd/book-tracker)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|36<br/>Tools used|12/14/23 <br/>Report generated|
+|38<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -275,9 +275,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (13)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (15)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (13)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (15)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -290,6 +290,8 @@ Full tech stack [here](/techstack.md)
 |[@typescript-eslint/parser](https://www.npmjs.com/@typescript-eslint/parser)|v6.9.1|12/01/23|Faye Okude |BSD-2-Clause|N/A|
 |[eslint-config-prettier](https://www.npmjs.com/eslint-config-prettier)|v9.0.0|11/30/23|Faye Okude |MIT|N/A|
 |[eslint-plugin-react-hooks](https://www.npmjs.com/eslint-plugin-react-hooks)|v4.6.0|12/01/23|Faye Okude |MIT|N/A|
+|[husky](https://www.npmjs.com/husky)|v8.0.3|11/30/23|Faye Okude |MIT|N/A|
+|[lint-staged](https://www.npmjs.com/lint-staged)|v15.1.0|11/30/23|Faye Okude |MIT|N/A|
 |[react-dom](https://www.npmjs.com/react-dom)|v18.2.0|12/01/23|Faye Okude |MIT|N/A|
 |[react-router-dom](https://www.npmjs.com/react-router-dom)|v6.18.0|12/01/23|Faye Okude |MIT|N/A|
 |[tailwindcss](https://www.npmjs.com/tailwindcss)|v3.3.5|11/30/23|Faye Okude |MIT|N/A|
