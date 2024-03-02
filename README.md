@@ -80,3 +80,16 @@ If you'd like to contribute to the project, follow these steps:
 Thank you for reading!
 
 If you want a deeper understanding of how this project works, for contribution's sake or otherwise, I made some notes about how the different features were implemented [here](https://github.com/f-okd/book-tracker/blob/main/misc/README.md)
+
+## Tech Stack
+
+- [Node.js](http://nodejs.org/) – Frameworks (Full Stack)
+- [React](https://reactjs.org/) – Javascript UI Libraries
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
+- [TypeScript](http://www.typescriptlang.org) – Languages
+- [React Router](https://github.com/rackt/react-router) – JavaScript Framework Components
+- [axios](https://github.com/mzabriskie/axios) – Javascript Utilities & Libraries
+- [Prettier](https://prettier.io/) – Code Review
+- [Tailwind CSS](https://tailwindcss.com) – Front-End Frameworks
+- [Supabase](https://supabase.com/) – Realtime Backend / API
+- [Vite](https://vitejs.dev/) – JS Build Tools / JS Task Runners
