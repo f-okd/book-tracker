@@ -54,9 +54,9 @@ If you'd like to contribute to the project, follow these steps:
 1. Create an Issue (optional):
    It would be preferable to create an issue first, so proposed changes or plans can be discussed
 
-2. Follow steps (1-3) from [above](#How to Run)
+2. Follow steps (1-3) from [above](## How to Run)
 
-3. Create a new branch for your feature or bug fix:
+3. Fork the repository and create a new branch for your feature or bug fix:
 
    ```bash
    git checkout -b feature-name
