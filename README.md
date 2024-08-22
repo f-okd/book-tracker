@@ -54,7 +54,7 @@ If you'd like to contribute to the project, follow these steps:
 1. Create an Issue (optional):
    It would be preferable to create an issue first, so proposed changes or plans can be discussed
 
-2. Follow steps (1-3) from [above](## How to Run)
+2. Follow steps (1-3) from [above](#how-to-run)
 
 3. Fork the repository and create a new branch for your feature or bug fix:
 
