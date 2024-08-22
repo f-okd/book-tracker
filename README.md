@@ -37,7 +37,7 @@ You should be able to access the application at [http://localhost:5173](http://l
 
 Ensure the project functions as expected by following these steps:
 
-1. Follow steps (1-3) from [above](#How to Run)
+1. Follow steps (1-3) from [above](#how-to-run)
 2. Run tests:
    `bash
     npm run test
